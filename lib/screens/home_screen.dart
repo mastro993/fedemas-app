@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
               ),
               SizedBox(height: 8),
               Text(
-                'If you don\'t see anything is because I\'m still building it and don\'t have anough time.',
+                'If you don\'t see anything it is because I\'m still building it and don\'t have anough time.',
                 style: Theme.of(context).textTheme.body1,
                 textAlign: TextAlign.center,
               ),

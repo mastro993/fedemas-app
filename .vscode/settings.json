@@ -3,6 +3,6 @@
         "node_modules{,/**}",
         ".vscode{,/**}"
     ],
-    "appService.defaultWebAppToDeploy": "/subscriptions/be135d48-6639-48c8-b19f-fb6e43789bfa/resourceGroups/fedemas-linux/providers/Microsoft.Web/sites/fedemas-web",
-    "appService.deploySubpath": ""
+    "appService.deploySubpath": "build\\web",
+    "appService.defaultWebAppToDeploy": "/subscriptions/be135d48-6639-48c8-b19f-fb6e43789bfa/resourceGroups/fedemas/providers/Microsoft.Web/sites/fedemas-app"
 }

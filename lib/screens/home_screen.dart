@@ -3,8 +3,7 @@ import 'dart:js' as js;
 
 class HomeScreen extends StatelessWidget {
   void openUrl(String url) {
-    js.context.callMethod(
-        "open", [url]);
+    js.context.callMethod("open", [url]);
   }
 
   @override
@@ -17,13 +16,15 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                'Hi! Federico here.',
+                'Hey, Federico here.',
                 style: Theme.of(context).textTheme.title,
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 8),
+              Padding(
+                  padding: EdgeInsets.all(24),
+                  child: Image.asset('images/codercat.gif')),
               Text(
-                'If you don\'t see anything it is because I\'m still building it and don\'t have anough time.',
+                'If you can\'t see anything it\'s because I\'m still building this site and I don\'t have anough time to do it.',
                 style: Theme.of(context).textTheme.body1,
                 textAlign: TextAlign.center,
               ),
@@ -45,17 +46,20 @@ class HomeScreen extends StatelessWidget {
                   IconButton(
                     icon: Image.asset('images/stackoverflow.png'),
                     tooltip: 'Stackoverflow',
-                    onPressed: () => openUrl('https://stackoverflow.com/users/5372892/federico-mastrini'),
+                    onPressed: () => openUrl(
+                        'https://stackoverflow.com/users/5372892/federico-mastrini'),
                   ),
                   IconButton(
                     icon: Image.asset('images/hackerrank.png'),
                     tooltip: 'HackerRank',
-                    onPressed: () => openUrl('https://www.hackerrank.com/fedemas'),
+                    onPressed: () =>
+                        openUrl('https://www.hackerrank.com/fedemas'),
                   ),
                   IconButton(
                     icon: Image.asset('images/linkedin.png'),
                     tooltip: 'Linkedin',
-                    onPressed: () => openUrl('https://www.linkedin.com/in/fedemas/'),
+                    onPressed: () =>
+                        openUrl('https://www.linkedin.com/in/fedemas/'),
                   ),
                   IconButton(
                     icon: Image.asset('images/github.png'),

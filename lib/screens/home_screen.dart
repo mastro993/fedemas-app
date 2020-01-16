@@ -15,14 +15,15 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                'Hey, Federico here.',
-                style: Theme.of(context).textTheme.title,
-                textAlign: TextAlign.center,
-              ),
               Padding(
                   padding: EdgeInsets.all(24),
                   child: Image.asset('images/codercat.gif')),
+              Text(
+                'Hey.',
+                style: Theme.of(context).textTheme.title,
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 8),
               Text(
                 'If you can\'t see anything it\'s because I\'m still building this site and I don\'t have anough time to do it.',
                 style: Theme.of(context).textTheme.body1,
@@ -47,7 +48,7 @@ class HomeScreen extends StatelessWidget {
                     icon: Image.asset('images/stackoverflow.png'),
                     tooltip: 'Stackoverflow',
                     onPressed: () => openUrl(
-                        'https://stackoverflow.com/users/5372892/federico-mastrini'),
+                        'https://stackoverflow.com/story/fedemas'),
                   ),
                   IconButton(
                     icon: Image.asset('images/hackerrank.png'),

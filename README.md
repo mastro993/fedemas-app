@@ -2,4 +2,4 @@
 
 A website made with Flutter.
 
-See it at http://fedemas.net
+See it at http://fedemas.me

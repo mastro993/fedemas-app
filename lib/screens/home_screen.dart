@@ -8,6 +8,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var _size = MediaQuery.of(context).size;
     return Scaffold(
       body: Center(
         child: Padding(
@@ -15,9 +16,12 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Padding(
-                  padding: EdgeInsets.all(24),
+              ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxHeight: _size.height * 0.5,
+                  ),
                   child: Image.asset('images/codercat.gif')),
+              SizedBox(height: 16),
               Text(
                 'Hey.',
                 style: Theme.of(context).textTheme.title,
@@ -47,8 +51,8 @@ class HomeScreen extends StatelessWidget {
                   IconButton(
                     icon: Image.asset('images/stackoverflow.png'),
                     tooltip: 'Stackoverflow',
-                    onPressed: () => openUrl(
-                        'https://stackoverflow.com/story/fedemas'),
+                    onPressed: () =>
+                        openUrl('https://stackoverflow.com/story/fedemas'),
                   ),
                   IconButton(
                     icon: Image.asset('images/hackerrank.png'),

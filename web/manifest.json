@@ -1,12 +1,12 @@
 {
-    "name": "fedemas_app",
-    "short_name": "fedemas_app",
+    "name": "Fedemas",
+    "short_name": "fedemas",
     "start_url": ".",
     "display": "minimal-ui",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
-    "orientation": "portrait-primary",
+    "description": "Federico's personal website",
+    "orientation": "landscape-primary",
     "prefer_related_applications": false,
     "icons": [
         {

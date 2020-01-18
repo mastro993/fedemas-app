@@ -1,0 +1,26 @@
+[
+    {
+        "family": "MaterialIcons",
+        "fonts": [
+            {
+                "asset": "fonts/MaterialIcons-Regular.ttf"
+            }
+        ]
+    },
+    {
+        "family": "Lato",
+        "fonts": [
+            {
+                "asset": "fonts/Lato-Black.ttf",
+                "weight": 900
+            },
+            {
+                "asset": "fonts/Lato-Regular.ttf"
+            },
+            {
+                "asset": "fonts/Lato-Italic.ttf",
+                "style": "italic"
+            }
+        ]
+    }
+]

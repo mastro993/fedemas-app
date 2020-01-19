@@ -14,6 +14,7 @@ class HomeScreenPortrait extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Container(
             padding: EdgeInsets.all(24),
             width: double.infinity,

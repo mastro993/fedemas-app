@@ -33,21 +33,7 @@ class ProfileContainer extends StatelessWidget {
           SizedBox(height: 48),
           _ProfileInfo(),
           SizedBox(height: 48),
-          ButtonTheme(
-            minWidth: 240,
-            child: FlatButton(
-              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-              shape: new RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(16.0)),
-              onPressed: () {},
-              color: Theme.of(context).accentColor,
-              textColor: Colors.white,
-              child: Text(
-                'Download Resume',
-                style: TextStyle(fontWeight: FontWeight.w500),
-              ),
-            ),
-          ),
+          _DownloadResumeButton(),
           SizedBox(height: 48),
           _SocialProfiles()
         ],
@@ -56,8 +42,42 @@ class ProfileContainer extends StatelessWidget {
   }
 }
 
+class _DownloadResumeButton extends StatelessWidget {
+  const _DownloadResumeButton({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ButtonTheme(
+      minWidth: 240,
+      child: FlatButton(
+        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+        shape: new RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(24.0)),
+        onPressed: () {},
+        color: Theme.of(context).accentColor,
+        textColor: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Icon(Icons.library_books),
+            SizedBox(
+              width: 24.0,
+            ),
+            Text(
+              'Download Resume',
+              style: TextStyle(fontWeight: FontWeight.w500),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _ProfileInfo extends StatelessWidget {
-  final _separatorColor = Color.fromARGB(64, 171, 179, 201);
+  final _separatorColor = const Color(0xFF2a2a2a);
   @override
   Widget build(BuildContext context) {
     return Column(

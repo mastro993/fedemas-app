@@ -9,30 +9,40 @@ class HomeScreenLandscape extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: _New(),
+    );
+  }
+}
+
+class _New extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final _mediaQuery = MediaQuery.of(context);
+    return Container(
+      height: _mediaQuery.size.height,
+      child: Center(
         child: Container(
-          padding: EdgeInsets.all(32),
-          color: Colors.white,
+          padding: const EdgeInsets.symmetric(horizontal: 48),
+          color: const Color(0xFF1a1a1a), //Colors.white,
           width: 1280,
-          height: double.infinity,
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               ProfileContainer(),
-              SizedBox(width: 16),
               Expanded(
-                child: Container(
-                  padding: EdgeInsets.all(24),
-                  height: double.infinity,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      SummaryContainer(),
-                      WorkContainer(),
-                      EducationContainer(),
-                      ProjectsContainer()
-                    ],
+                child: SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
+                  child: Padding(
+                    padding: const EdgeInsets.all(32.0),
+                    child: Column(
+                      children: <Widget>[
+                        SummaryContainer(),
+                        WorkContainer(),
+                        EducationContainer(),
+                        ProjectsContainer()
+                      ],
+                    ),
                   ),
                 ),
               )

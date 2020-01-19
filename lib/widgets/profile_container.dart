@@ -14,7 +14,7 @@ class ProfileContainer extends StatelessWidget {
           CircleAvatar(
             radius: 80,
             backgroundImage: NetworkImage(
-                'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png'),
+                'http://www.learnyzen.com/wp-content/uploads/2017/08/test1-481x385.png'),
             backgroundColor: Colors.transparent,
           ),
           SizedBox(height: 40),
@@ -35,13 +35,12 @@ class ProfileContainer extends StatelessWidget {
           SizedBox(height: 48),
           ButtonTheme(
             minWidth: 240,
-            child: RaisedButton(
+            child: FlatButton(
               padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-              elevation: 0,
               shape: new RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(12.0)),
+                  borderRadius: new BorderRadius.circular(16.0)),
               onPressed: () {},
-              color: Color.fromARGB(255, 54, 124, 255),
+              color: Theme.of(context).accentColor,
               textColor: Colors.white,
               child: Text(
                 'Download Resume',
@@ -103,8 +102,8 @@ class _SocialProfiles extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        _SocialProfileItem('GitHub', 'images/github.png',
-            'https://github.com/mastro993'),
+        _SocialProfileItem(
+            'GitHub', 'images/github.png', 'https://github.com/mastro993'),
         _SocialProfileItem('HackerRank', 'images/hackerrank.png',
             'https://www.hackerrank.com/fedemas'),
         _SocialProfileItem('LinkedIn', 'images/linkedin.png',
@@ -126,7 +125,8 @@ class _SocialProfileItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-        icon: Image.asset(_icon, colorBlendMode: BlendMode.dstIn, color: Colors.red),
+        icon: Image.asset(_icon,
+            colorBlendMode: BlendMode.dstIn, color: Colors.red),
         tooltip: _description,
         onPressed: () => js.context.callMethod("open", [_url]));
   }

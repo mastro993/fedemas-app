@@ -72,8 +72,8 @@ flutter:
         - asset: assets/fonts/Lato-BoldItalic.ttf
           weight: 700
           style: italic
-        - asset: assets/fonts/Raleway-Regular.ttf
-        - asset: assets/fonts/Releway-Italic.ttf
+        - asset: assets/fonts/Lato-Regular.ttf
+        - asset: assets/fonts/Lato-Italic.ttf
           style: italic
         - asset: assets/fonts/Lato-Light.ttf
           weight: 300

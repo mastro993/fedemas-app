@@ -1,7 +1,25 @@
+import 'package:fedemas_app/model/user.dart';
 import 'package:flutter/material.dart';
 import 'dart:js' as js;
 
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 class ProfileContainer extends StatelessWidget {
+  // ! To be provided externally
+  final _user = const User(
+    name: 'Federico Mastrini',
+    email: 'federicomastrini93@gmail.com',
+    location: 'Monzone (MS), Italy',
+    education: 'Software Engineering',
+    occupation: 'Software Developer',
+    githubUrl: 'https://github.com/mastro993',
+    hackerrankUrl: 'https://www.hackerrank.com/fedemas',
+    linkedinUrl: 'https://www.linkedin.com/in/fedemas/',
+    stackoverflowUrl: 'https://stackoverflow.com/users/story/5372892',
+  );
+
+  final _separatorColor = const Color(0xFF2a2a2a);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -13,13 +31,12 @@ class ProfileContainer extends StatelessWidget {
           SizedBox(height: 40),
           CircleAvatar(
             radius: 80,
-            backgroundImage: NetworkImage(
-                'http://www.learnyzen.com/wp-content/uploads/2017/08/test1-481x385.png'),
+            backgroundImage: AssetImage('images/propic.png'),
             backgroundColor: Colors.transparent,
           ),
           SizedBox(height: 40),
           Text(
-            'Federico Mastrini',
+            _user.name,
             style: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.w900,
@@ -27,15 +44,43 @@ class ProfileContainer extends StatelessWidget {
           ),
           SizedBox(height: 8),
           Text(
-            'Software Engineer',
+            _user.occupation,
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300),
           ),
           SizedBox(height: 48),
-          _ProfileInfo(),
+          _ProfileInfoItem(_user.email, FontAwesomeIcons.paperPlane),
+          Divider(color: _separatorColor),
+          _ProfileInfoItem(_user.location, FontAwesomeIcons.mapMarkerAlt),
+          Divider(color: _separatorColor),
+          _ProfileInfoItem(_user.education, FontAwesomeIcons.graduationCap),
           SizedBox(height: 48),
           _DownloadResumeButton(),
           SizedBox(height: 48),
-          _SocialProfiles()
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              _SocialProfileItem(
+                'GitHub',
+                FontAwesomeIcons.github,
+                _user.githubUrl,
+              ),
+              _SocialProfileItem(
+                'HackerRank',
+                FontAwesomeIcons.hackerrank,
+                _user.hackerrankUrl,
+              ),
+              _SocialProfileItem(
+                'LinkedIn',
+                FontAwesomeIcons.linkedinIn,
+                _user.linkedinUrl,
+              ),
+              _SocialProfileItem(
+                'StackOverflow',
+                FontAwesomeIcons.stackOverflow,
+                _user.stackoverflowUrl,
+              ),
+            ],
+          )
         ],
       ),
     );
@@ -61,7 +106,10 @@ class _DownloadResumeButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Icon(Icons.library_books),
+            Icon(
+              FontAwesomeIcons.fileDownload,
+              size: 21,
+            ),
             SizedBox(
               width: 24.0,
             ),
@@ -72,22 +120,6 @@ class _DownloadResumeButton extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class _ProfileInfo extends StatelessWidget {
-  final _separatorColor = const Color(0xFF2a2a2a);
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        _ProfileInfoItem('federicomastrini93@gmail.com', Icons.email),
-        Divider(color: _separatorColor),
-        _ProfileInfoItem('Monzone (MS), Italy', Icons.location_on),
-        Divider(color: _separatorColor),
-        _ProfileInfoItem('Software Development', Icons.work),
-      ],
     );
   }
 }
@@ -108,6 +140,7 @@ class _ProfileInfoItem extends StatelessWidget {
           child: Icon(
             _icon,
             color: _iconColor,
+            size: 16,
           ),
         ),
         Text(_title),
@@ -116,37 +149,20 @@ class _ProfileInfoItem extends StatelessWidget {
   }
 }
 
-class _SocialProfiles extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        _SocialProfileItem(
-            'GitHub', 'images/github.png', 'https://github.com/mastro993'),
-        _SocialProfileItem('HackerRank', 'images/hackerrank.png',
-            'https://www.hackerrank.com/fedemas'),
-        _SocialProfileItem('LinkedIn', 'images/linkedin.png',
-            'https://www.linkedin.com/in/fedemas/'),
-        _SocialProfileItem('StackOverflow', 'images/stackoverflow.png',
-            'https://stackoverflow.com/users/story/5372892'),
-      ],
-    );
-  }
-}
-
 class _SocialProfileItem extends StatelessWidget {
-  final String _icon;
+  final IconData _iconData;
   final String _url;
   final String _description;
 
-  _SocialProfileItem(this._description, this._icon, this._url);
+  _SocialProfileItem(this._description, this._iconData, this._url);
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
-        icon: Image.asset(_icon,
-            colorBlendMode: BlendMode.dstIn, color: Colors.red),
+        icon: Icon(
+          _iconData,
+          color: const Color(0xFFE4E7EB),
+        ),
         tooltip: _description,
         onPressed: () => js.context.callMethod("open", [_url]));
   }

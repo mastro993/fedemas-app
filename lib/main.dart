@@ -11,10 +11,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         buttonColor: Color.fromARGB(255, 54, 124, 255),
         accentColor: Color.fromARGB(255, 54, 124, 255),
-        canvasColor: const Color(0xFF191919),//Color.fromARGB(255, 251, 252, 253),
+        canvasColor: const Color(0xFF1D2025),//Color.fromARGB(255, 251, 252, 253),
         textTheme: Theme.of(context).textTheme.apply(
-          bodyColor: const Color(0xFFAAAAAA),
-          displayColor: Color.fromARGB(255, 51, 70, 128),
+          bodyColor: const Color(0xFFE4E7EB),
+          displayColor: const Color(0xFFE4E7EB),
         ),
       ),
       home: HomeScreen(),

@@ -22,8 +22,7 @@ class _New extends StatelessWidget {
       height: _mediaQuery.size.height,
       child: Center(
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 48),
-          color: const Color(0xFF1a1a1a), //Colors.white,
+          padding: const EdgeInsets.symmetric(horizontal: 48), //Colors.white,
           width: 1280,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,

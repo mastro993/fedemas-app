@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         textTheme: Theme.of(context).textTheme.apply(
           bodyColor: const Color(0xFFE4E7EB),
           displayColor: const Color(0xFFE4E7EB),
-          fontFamily: 'Lato'
+          fontFamily: 'SF Pro'
         ),
       ),
       home: MainScreen(),

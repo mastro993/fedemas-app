@@ -56,6 +56,14 @@
         ]
     },
     {
+        "family": "SF Pro",
+        "fonts": [
+            {
+                "asset": "fonts/SF-Pro-Display-Regular.otf"
+            }
+        ]
+    },
+    {
         "family": "packages/font_awesome_flutter/FontAwesomeBrands",
         "fonts": [
             {

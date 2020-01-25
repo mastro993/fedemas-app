@@ -9,13 +9,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Fedemas',
       theme: ThemeData(
-        buttonColor: Color.fromARGB(255, 54, 124, 255),
-        accentColor: Color.fromARGB(255, 54, 124, 255),
-        canvasColor: const Color(0xFF1D2025),//Color.fromARGB(255, 251, 252, 253),
+        buttonColor: Color.fromRGBO(54, 124, 255, 1.0),
+        accentColor: Color.fromRGBO(54, 124, 255, 1.0),
+        canvasColor: const Color(0xFF1D2025),
         textTheme: Theme.of(context).textTheme.apply(
           bodyColor: const Color(0xFFE4E7EB),
           displayColor: const Color(0xFFE4E7EB),
-          fontFamily: 'SF Pro'
+          fontFamily: 'Yantramanav'
         ),
       ),
       home: MainScreen(),

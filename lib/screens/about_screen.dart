@@ -6,7 +6,10 @@ class AboutScreen extends StatelessWidget {
     return Container(
       height: 2000,
       child: Center(
-        child: Text('Hi, my name is Federico!', style: TextStyle(fontSize: 32),),
+        child: Text(
+          'Hi, my name is Federico!',
+          style: TextStyle(fontSize: 32),
+        ),
       ),
     );
   }

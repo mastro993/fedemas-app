@@ -14,7 +14,7 @@ class ProjectsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              'Lorem ipsum dolor sit amet',
+              'Lorem ipsum dolor sit amet 👋',
               style: TextStyle(
                 fontSize: 64,
                 height: 1.2,

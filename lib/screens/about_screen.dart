@@ -14,7 +14,7 @@ class AboutScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              'Lorem ipsum dolor sit amet',
+              'Lorem ipsum dolor sit amet 😂',
               style: TextStyle(
                 fontSize: 45,
                 height: 1.2,

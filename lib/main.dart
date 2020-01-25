@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         buttonColor: Color.fromRGBO(54, 124, 255, 1.0),
         accentColor: Color.fromRGBO(54, 124, 255, 1.0),
-        canvasColor: const Color(0xFF1D2025),
+        canvasColor: Colors.black,//const Color(0xFF1D2025),
         textTheme: Theme.of(context).textTheme.apply(
           bodyColor: const Color(0xFFE4E7EB),
           displayColor: const Color(0xFFE4E7EB),

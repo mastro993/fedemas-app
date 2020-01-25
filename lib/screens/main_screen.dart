@@ -23,6 +23,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       appBar: NavigationBar(
         onPageSelect: _onPageSelect,
+        selectedPage: _pageIndex,
       ),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),

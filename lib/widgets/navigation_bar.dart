@@ -1,3 +1,4 @@
+import 'package:fedemas_app/utils/url_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -13,7 +14,6 @@ class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final bool _expanded = MediaQuery.of(context).size.width >= 1000;
-
     return SafeArea(
       child: Container(
         padding: EdgeInsets.all(24),
@@ -31,14 +31,16 @@ class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    FlatButton(
-                        onPressed: () => onPageSelect(0),
-                        child: Text('Projects'),
-                        textColor: Colors.white),
-                    FlatButton(
-                        onPressed: () => onPageSelect(1),
-                        child: Text('About'),
-                        textColor: Colors.white)
+                    NavigationButton(
+                      title: 'Projects',
+                      isSelected: selectedPage == 0,
+                      onPressed: () => onPageSelect(0),
+                    ),
+                    NavigationButton(
+                      title: 'About',
+                      isSelected: selectedPage == 1,
+                      onPressed: () => onPageSelect(1),
+                    ),
                   ],
                 ),
               ),
@@ -48,7 +50,7 @@ class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
               child: Text(
                 'Federico Mastrini',
                 style: TextStyle(
-                  fontSize: _expanded ? 32 : 24,
+                  fontSize: _expanded ? 32 : 21,
                   fontWeight: FontWeight.w800,
                 ),
               ),
@@ -60,19 +62,22 @@ class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Icon(FontAwesomeIcons.linkedinIn, color: Colors.white),
-                    SizedBox(
-                      width: 16,
+                    NavigationSocialButton(
+                      iconData: FontAwesomeIcons.linkedinIn,
+                      destinationUrl: 'https://www.linkedin.com/in/fedemas/',
                     ),
-                    Icon(FontAwesomeIcons.github, color: Colors.white),
-                    SizedBox(
-                      width: 16,
+                    NavigationSocialButton(
+                      iconData: FontAwesomeIcons.github,
+                      destinationUrl: 'https://github.com/mastro993',
                     ),
-                    Icon(FontAwesomeIcons.hackerrank, color: Colors.white),
-                    SizedBox(
-                      width: 16,
+                    NavigationSocialButton(
+                      iconData: FontAwesomeIcons.hackerrank,
+                      destinationUrl: 'https://www.hackerrank.com/fedemas',
                     ),
-                    Icon(FontAwesomeIcons.stackOverflow, color: Colors.white),
+                    NavigationSocialButton(
+                      iconData: FontAwesomeIcons.stackOverflow,
+                      destinationUrl: 'https://stackoverflow.com/story/fedemas',
+                    ),
                   ],
                 ),
               ),
@@ -87,5 +92,45 @@ class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
       ),
     );
     // ? reference: https://stackoverflow.com/a/57942351/5372892
+  }
+}
+
+class NavigationSocialButton extends StatelessWidget {
+  final IconData iconData;
+  final String destinationUrl;
+
+  NavigationSocialButton({this.iconData, this.destinationUrl});
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(iconData),
+      color: Colors.white,
+      onPressed: () => UrlUtils.openUrl(destinationUrl),
+    );
+  }
+}
+
+class NavigationButton extends StatelessWidget {
+  final Function onPressed;
+  final bool isSelected;
+  final String title;
+
+  NavigationButton({
+    @required this.title,
+    @required this.isSelected,
+    @required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return FlatButton(
+      onPressed: onPressed,
+      child: Text(
+        this.title,
+        style: TextStyle(fontSize: 18),
+      ),
+      textColor: this.isSelected ? Colors.white : Colors.white.withOpacity(0.4),
+    );
   }
 }

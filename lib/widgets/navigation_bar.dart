@@ -6,13 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
+  static const double SIZE = 96.0;
+
   @override
   final Size preferredSize;
   final int selectedPage;
   final Function onPageSelect;
 
   NavigationBar({this.onPageSelect, this.selectedPage})
-      : preferredSize = Size.fromHeight(96.0);
+      : preferredSize = Size.fromHeight(NavigationBar.SIZE);
 
   @override
   Widget build(BuildContext context) {
@@ -100,5 +102,3 @@ class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
     // ? reference: https://stackoverflow.com/a/57942351/5372892
   }
 }
-
-

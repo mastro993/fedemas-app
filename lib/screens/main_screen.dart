@@ -1,9 +1,9 @@
 import 'package:fedemas_app/screens/about_screen.dart';
 import 'package:fedemas_app/screens/projects_screen.dart';
 import 'package:fedemas_app/widgets/main_drawer.dart';
+import 'package:fedemas_app/widgets/main_footer.dart';
 import 'package:fedemas_app/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -19,8 +19,20 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
+  Widget _getCurrentPage() {
+    switch (_pageIndex) {
+      case 0:
+        return ProjectsScreen();
+      case 1:
+        return AboutScreen();
+      default:
+        return ProjectsScreen();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final _mq = MediaQuery.of(context);
     return Scaffold(
       appBar: NavigationBar(
         onPageSelect: _onPageSelect,
@@ -28,13 +40,22 @@ class _MainScreenState extends State<MainScreen> {
       ),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
-        child: _pageIndex == 0 ? ProjectsScreen() : AboutScreen(),
+        child: Column(
+          children: <Widget>[
+            ConstrainedBox(
+              constraints: new BoxConstraints(
+                minHeight: _mq.size.height - NavigationBar.SIZE - MainFooter.SIZE,
+              ),
+              child: _getCurrentPage(),
+            ),
+            MainFooter(),
+          ],
+        ),
       ),
       endDrawer: MainDrawer(
         selectedPage: _pageIndex,
         onPageSelect: _onPageSelect,
       ),
-    
     );
   }
 }

@@ -30,6 +30,40 @@ class ProjectsScreen extends StatelessWidget {
                 height: 1.5
               ),
             ),
+            SizedBox(height: 48.0),
+            GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                  itemCount: 9,
+                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 480.0,
+                      childAspectRatio: 4 / 3,
+                      crossAxisSpacing: 24.0,
+                      mainAxisSpacing: 24.0
+                      ),
+                  itemBuilder: (BuildContext context, int index) {
+                    //if (index < 50)
+                    return Container(
+                      padding: EdgeInsets.all(20.0),
+                      child: Center(
+                        child: GridTile(
+                          footer: Text(
+                            'Item $index',
+                            textAlign: TextAlign.center,
+                          ),
+                          header: Text(
+                            'SubItem $index',
+                            textAlign: TextAlign.center,
+                          ),
+                          child: Icon(Icons.access_alarm,
+                              size: 40.0, color: Colors.white30),
+                        ),
+                      ),
+                      color: Colors.blue[400],
+                      margin: EdgeInsets.all(1.0),
+                    );
+                  },
+                ),
           ],
         ),
       ),

@@ -1,4 +1,7 @@
+import 'package:fedemas_app/utils/custom_cursor.dart';
 import 'package:fedemas_app/utils/url_utils.dart';
+import 'package:fedemas_app/widgets/navigation_bar_button.dart';
+import 'package:fedemas_app/widgets/navigation_bar_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -31,12 +34,12 @@ class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    NavigationButton(
+                    NavigationBarButton(
                       title: 'Projects',
                       isSelected: selectedPage == 0,
                       onPressed: () => onPageSelect(0),
                     ),
-                    NavigationButton(
+                    NavigationBarButton(
                       title: 'About',
                       isSelected: selectedPage == 1,
                       onPressed: () => onPageSelect(1),
@@ -62,19 +65,19 @@ class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    NavigationSocialButton(
+                    NavigationBarIconButton(
                       iconData: FontAwesomeIcons.linkedinIn,
                       destinationUrl: 'https://www.linkedin.com/in/fedemas/',
                     ),
-                    NavigationSocialButton(
+                    NavigationBarIconButton(
                       iconData: FontAwesomeIcons.github,
                       destinationUrl: 'https://github.com/mastro993',
                     ),
-                    NavigationSocialButton(
+                    NavigationBarIconButton(
                       iconData: FontAwesomeIcons.hackerrank,
                       destinationUrl: 'https://www.hackerrank.com/fedemas',
                     ),
-                    NavigationSocialButton(
+                    NavigationBarIconButton(
                       iconData: FontAwesomeIcons.stackOverflow,
                       destinationUrl: 'https://stackoverflow.com/story/fedemas',
                     ),
@@ -82,10 +85,13 @@ class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               ),
             if (!_expanded)
-              IconButton(
-                icon: Icon(FontAwesomeIcons.bars),
-                onPressed: () {},
-                color: Colors.white,
+              CustomCursor(
+                cursorStyle: CustomCursor.pointer,
+                child: IconButton(
+                  icon: Icon(FontAwesomeIcons.bars),
+                  onPressed: () => Scaffold.of(context).openEndDrawer(),
+                  color: Colors.white,
+                ),
               )
           ],
         ),
@@ -95,42 +101,4 @@ class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
   }
 }
 
-class NavigationSocialButton extends StatelessWidget {
-  final IconData iconData;
-  final String destinationUrl;
 
-  NavigationSocialButton({this.iconData, this.destinationUrl});
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      icon: Icon(iconData),
-      color: Colors.white,
-      onPressed: () => UrlUtils.openUrl(destinationUrl),
-    );
-  }
-}
-
-class NavigationButton extends StatelessWidget {
-  final Function onPressed;
-  final bool isSelected;
-  final String title;
-
-  NavigationButton({
-    @required this.title,
-    @required this.isSelected,
-    @required this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return FlatButton(
-      onPressed: onPressed,
-      child: Text(
-        this.title,
-        style: TextStyle(fontSize: 18),
-      ),
-      textColor: this.isSelected ? Colors.white : Colors.white.withOpacity(0.4),
-    );
-  }
-}

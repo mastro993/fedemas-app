@@ -1,5 +1,6 @@
 import 'package:fedemas_app/screens/about_screen.dart';
 import 'package:fedemas_app/screens/projects_screen.dart';
+import 'package:fedemas_app/widgets/main_drawer.dart';
 import 'package:fedemas_app/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -29,6 +30,11 @@ class _MainScreenState extends State<MainScreen> {
         physics: BouncingScrollPhysics(),
         child: _pageIndex == 0 ? ProjectsScreen() : AboutScreen(),
       ),
+      endDrawer: MainDrawer(
+        selectedPage: _pageIndex,
+        onPageSelect: _onPageSelect,
+      ),
+    
     );
   }
 }

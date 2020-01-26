@@ -29,7 +29,7 @@ Sed at ipsum commodo ex sagittis elementum. Vestibulum nec nibh gravida, loborti
 
 Aliquam ut magna eu orci luctus elementum a quis lorem. Suspendisse et est elit. Nunc nunc dui, laoreet eget dictum nec, posuere eu arcu. Ut convallis lobortis purus, et iaculis quam semper eget. Phasellus eget dolor orci. Curabitur id mi in nulla porta pellentesque in vitae turpis. Duis blandit, enim at tincidunt vehicula, sapien sem pretium nisi, non pharetra elit enim et velit. Morbi quis arcu in nulla convallis accumsan. Nunc scelerisque eget diam ut eleifend. Curabitur enim nisl, porta ac rhoncus vel, aliquet varius magna. Proin diam eros, convallis ut turpis ac, mollis ullamcorper ex.''',
               style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 19,
                   color: Colors.white.withOpacity(0.5),
                   height: 1.5),
             )

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MainFooter extends StatelessWidget {
-  static const double SIZE = 128.0;
+  static const double SIZE = 192.0;
   @override
   Widget build(BuildContext context) {
     return Container(

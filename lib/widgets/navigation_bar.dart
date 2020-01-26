@@ -1,4 +1,5 @@
 import 'package:fedemas_app/utils/custom_cursor.dart';
+import 'package:fedemas_app/utils/screen_utils.dart';
 import 'package:fedemas_app/utils/url_utils.dart';
 import 'package:fedemas_app/widgets/navigation_bar_button.dart';
 import 'package:fedemas_app/widgets/navigation_bar_icon_button.dart';
@@ -6,19 +7,17 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
-  static const double SIZE = 96.0;
-
   @override
   final Size preferredSize;
   final int selectedPage;
   final Function onPageSelect;
 
-  NavigationBar({this.onPageSelect, this.selectedPage})
-      : preferredSize = Size.fromHeight(NavigationBar.SIZE);
+  NavigationBar({this.onPageSelect, this.selectedPage, this.preferredSize});
 
   @override
   Widget build(BuildContext context) {
-    final bool _expanded = MediaQuery.of(context).size.width >= 1000;
+    final bool _expanded =
+        MediaQuery.of(context).size.width >= ScreenUtils.landscapeMinWidth;
     return SafeArea(
       child: Container(
         padding: EdgeInsets.all(24),

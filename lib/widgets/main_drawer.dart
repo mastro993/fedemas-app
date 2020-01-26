@@ -17,51 +17,62 @@ class MainDrawer extends StatelessWidget {
       // Add a ListView to the drawer. This ensures the user can scroll
       // through the options in the drawer if there isn't enough vertical
       // space to fit everything.
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        // Important: Remove any padding from the ListView.
+      child: Stack(
         children: <Widget>[
-          NavigationBarButton(
-            title: 'Projects',
-            isSelected: selectedPage == 0,
-            onPressed: () {
-              onPageSelect(0);
-              Navigator.of(context).pop();
-            },
+          Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              // Important: Remove any padding from the ListView.
+              children: <Widget>[
+                NavigationBarButton(
+                  title: 'Projects',
+                  isSelected: selectedPage == 0,
+                  onPressed: () {
+                    onPageSelect(0);
+                    Navigator.of(context).pop();
+                  },
+                  fontSize: 24,
+                ),
+                NavigationBarButton(
+                  title: 'About',
+                  isSelected: selectedPage == 1,
+                  onPressed: () {
+                    onPageSelect(1);
+                    Navigator.of(context).pop();
+                  },
+                  fontSize: 24,
+                ),
+              ],
+            ),
           ),
-          NavigationBarButton(
-              title: 'About',
-              isSelected: selectedPage == 1,
-              onPressed: () {
-                onPageSelect(1);
-                Navigator.of(context).pop();
-              }),
-          SizedBox(
-            height: 24,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              NavigationBarIconButton(
-                iconData: FontAwesomeIcons.linkedinIn,
-                destinationUrl: 'https://www.linkedin.com/in/fedemas/',
-              ),
-              NavigationBarIconButton(
-                iconData: FontAwesomeIcons.github,
-                destinationUrl: 'https://github.com/mastro993',
-              ),
-              NavigationBarIconButton(
-                iconData: FontAwesomeIcons.hackerrank,
-                destinationUrl: 'https://www.hackerrank.com/fedemas',
-              ),
-              NavigationBarIconButton(
-                iconData: FontAwesomeIcons.stackOverflow,
-                destinationUrl: 'https://stackoverflow.com/story/fedemas',
-              ),
-            ],
+          Positioned(
+            right: 0,
+            left: 0,
+            bottom: 48,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                NavigationBarIconButton(
+                  iconData: FontAwesomeIcons.linkedinIn,
+                  destinationUrl: 'https://www.linkedin.com/in/fedemas/',
+                ),
+                NavigationBarIconButton(
+                  iconData: FontAwesomeIcons.github,
+                  destinationUrl: 'https://github.com/mastro993',
+                ),
+                NavigationBarIconButton(
+                  iconData: FontAwesomeIcons.hackerrank,
+                  destinationUrl: 'https://www.hackerrank.com/fedemas',
+                ),
+                NavigationBarIconButton(
+                  iconData: FontAwesomeIcons.stackOverflow,
+                  destinationUrl: 'https://stackoverflow.com/story/fedemas',
+                ),
+              ],
+            ),
           )
         ],
       ),

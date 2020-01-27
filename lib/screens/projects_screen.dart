@@ -25,11 +25,11 @@ class _ProjectsSummary extends StatelessWidget {
     if (screenWidth >= ScreenUtils.WIDTH_LARGE) {
       titleFontSize = 64.0;
       textFontSize = 24.0;
-      textWidth = MediaQuery.of(context).size.width * 0.75;
+      textWidth = MediaQuery.of(context).size.width * 0.60;
     } else if (screenWidth >= ScreenUtils.WIDTH_MED) {
       titleFontSize = 64.0;
       textFontSize = 24.0;
-      textWidth = MediaQuery.of(context).size.width;
+      textWidth = MediaQuery.of(context).size.width * 0.75;
     } else {
       titleFontSize = 40.0;
       textFontSize = 19.0;
@@ -37,7 +37,7 @@ class _ProjectsSummary extends StatelessWidget {
     }
     return Container(
       constraints: BoxConstraints(
-        minHeight: MediaQuery.of(context).size.height * 0.60
+        minHeight: MediaQuery.of(context).size.height * 0.70,
       ),
       alignment: Alignment.center,
       padding: EdgeInsets.symmetric(horizontal: 24, vertical: 48),

@@ -1,3 +1,4 @@
 class ScreenUtils {
-  static const landscapeMinWidth = 1000;
+  static const WIDTH_LARGE = 1024;
+  static const WIDTH_MED = 768;
 }

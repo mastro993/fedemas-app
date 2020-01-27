@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 class ProjectsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _mq = MediaQuery.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
@@ -18,21 +17,39 @@ class ProjectsScreen extends StatelessWidget {
 class _ProjectsSummary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _mq = MediaQuery.of(context);
-    final _isWide = _mq.size.width >= ScreenUtils.landscapeMinWidth;
+    final mq = MediaQuery.of(context);
+    final screenWidth = mq.size.width;
+    double textWidth = 0;
+    double titleFontSize = 0;
+    double textFontSize = 0;
+    if (screenWidth >= ScreenUtils.WIDTH_LARGE) {
+      titleFontSize = 64.0;
+      textFontSize = 24.0;
+      textWidth = MediaQuery.of(context).size.width * 0.75;
+    } else if (screenWidth >= ScreenUtils.WIDTH_MED) {
+      titleFontSize = 64.0;
+      textFontSize = 24.0;
+      textWidth = MediaQuery.of(context).size.width;
+    } else {
+      titleFontSize = 40.0;
+      textFontSize = 19.0;
+      textWidth = MediaQuery.of(context).size.width;
+    }
     return Container(
-      alignment: Alignment.topCenter,
-      padding: EdgeInsets.symmetric(vertical: _isWide ? 192.0 : 96.0),
+      constraints: BoxConstraints(
+        minHeight: MediaQuery.of(context).size.height * 0.60
+      ),
+      alignment: Alignment.center,
+      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 48),
       child: Container(
-        width: 1480.0,
-        padding: EdgeInsets.all(_isWide ? 96.0 : 24.0),
+        width: textWidth,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Text(
-              'Lorem ipsum dolor sit amet 👋',
+              'Hey there 👋',
               style: TextStyle(
-                fontSize: _isWide ? 64 : 40,
+                fontSize: titleFontSize,
                 height: 1.2,
                 fontWeight: FontWeight.w700,
               ),
@@ -41,7 +58,7 @@ class _ProjectsSummary extends StatelessWidget {
             Text(
               'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis gravida elit efficitur faucibus interdum. Praesent consectetur arcu at velit varius, nec pulvinar ipsum semper. Aliquam est leo, efficitur non tempus in, maximus sit amet quam. Mauris libero nulla, mattis eu ipsum vel, porta efficitur leo. Proin accumsan tincidunt magna ac tristique. Integer hendrerit tellus sed lectus cursus pharetra. Phasellus placerat eget enim vel condimentum. Duis pretium faucibus leo non euismod. Pellentesque vitae sapien id urna venenatis fringilla vitae quis leo. Nullam eget nibh nulla. Etiam ante massa, sollicitudin in ligula congue, auctor iaculis risus. Nulla faucibus dui ac ligula suscipit tempus. Ut posuere metus ac metus tempor dictum. Morbi placerat, enim in volutpat gravida, odio dui pulvinar risus, eu feugiat leo dui non neque.',
               style: TextStyle(
-                fontSize: _isWide ? 24 : 21,
+                fontSize: textFontSize,
                 color: Colors.white.withOpacity(0.5),
                 height: 1.5,
               ),

@@ -16,8 +16,9 @@ class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool _expanded =
-        MediaQuery.of(context).size.width >= ScreenUtils.landscapeMinWidth;
+    final mq = MediaQuery.of(context);
+    final screenWidth = mq.size.width;
+    final expanded = screenWidth >= ScreenUtils.WIDTH_LARGE;
     return SafeArea(
       child: Container(
         padding: EdgeInsets.all(24),
@@ -27,7 +28,7 @@ class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            if (_expanded)
+            if (expanded)
               Flexible(
                 flex: 1,
                 fit: FlexFit.loose,
@@ -54,12 +55,12 @@ class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
               child: Text(
                 'Federico Mastrini',
                 style: TextStyle(
-                  fontSize: _expanded ? 32 : 21,
+                  fontSize: expanded ? 32 : 21,
                   fontWeight: FontWeight.w800,
                 ),
               ),
             ),
-            if (_expanded)
+            if (expanded)
               Flexible(
                 flex: 1,
                 child: Row(
@@ -85,7 +86,7 @@ class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
                   ],
                 ),
               ),
-            if (!_expanded)
+            if (!expanded)
               CustomCursor(
                 cursorStyle: CustomCursor.pointer,
                 child: IconButton(

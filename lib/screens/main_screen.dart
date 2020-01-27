@@ -33,13 +33,22 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final _mq = MediaQuery.of(context);
-    final _isWide = _mq.size.width >= ScreenUtils.landscapeMinWidth;
+    final mq = MediaQuery.of(context);
+    final screenWidth = mq.size.width;
+    print(screenWidth);
+    double navbarHeight;
+    if (screenWidth >= ScreenUtils.WIDTH_LARGE) {
+      navbarHeight = 104.0;
+    } else if (screenWidth >= ScreenUtils.WIDTH_MED) {
+      navbarHeight = 96.0;
+    } else {
+      navbarHeight = 80.0;
+    }
     return Scaffold(
       appBar: NavigationBar(
         onPageSelect: _onPageSelect,
         selectedPage: _pageIndex,
-        preferredSize: Size.fromHeight(_isWide ? 128.0 : 96.0),
+        preferredSize: Size.fromHeight(navbarHeight),
       ),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
@@ -47,7 +56,7 @@ class _MainScreenState extends State<MainScreen> {
           children: <Widget>[
             ConstrainedBox(
               constraints: new BoxConstraints(
-                minHeight: _mq.size.height - 96.0 - MainFooter.SIZE,
+                minHeight: mq.size.height - navbarHeight - MainFooter.SIZE,
               ),
               child: _getCurrentPage(),
             ),

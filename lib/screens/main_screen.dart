@@ -50,19 +50,25 @@ class _MainScreenState extends State<MainScreen> {
         selectedPage: _pageIndex,
         preferredSize: Size.fromHeight(navbarHeight),
       ),
-      body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Column(
-          children: <Widget>[
-            ConstrainedBox(
-              constraints: new BoxConstraints(
-                minHeight: mq.size.height - navbarHeight - MainFooter.SIZE,
-              ),
-              child: _getCurrentPage(),
+      body: Stack(
+        fit: StackFit.expand,
+        children: <Widget>[
+          Image.asset('images/bg.png', fit: BoxFit.cover,),
+          SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
+            child: Column(
+              children: <Widget>[
+                ConstrainedBox(
+                  constraints: new BoxConstraints(
+                    minHeight: mq.size.height - navbarHeight - MainFooter.SIZE,
+                  ),
+                  child: _getCurrentPage(),
+                ),
+                MainFooter(),
+              ],
             ),
-            MainFooter(),
-          ],
-        ),
+          )
+        ],
       ),
       endDrawer: MainDrawer(
         selectedPage: _pageIndex,

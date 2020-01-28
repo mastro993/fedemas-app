@@ -97,6 +97,7 @@ class _ProjectsGrid extends StatelessWidget {
     }
     return Container(
       alignment: Alignment.topCenter,
+      color: Colors.black,
       padding: EdgeInsets.symmetric(vertical: 24.0),
       child: Container(
         width: gridWidth,

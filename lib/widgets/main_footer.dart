@@ -7,7 +7,9 @@ class MainFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MainFooter.SIZE,
+      constraints: BoxConstraints.expand(height: MainFooter.SIZE),
+      color: Colors.black,
+      // height: MainFooter.SIZE,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,

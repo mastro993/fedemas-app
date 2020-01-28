@@ -1,3 +1,5 @@
+import 'package:fedemas_app/utils/custom_cursor.dart';
+import 'package:fedemas_app/utils/url_utils.dart';
 import 'package:flutter/material.dart';
 
 class MainFooter extends StatelessWidget {
@@ -6,8 +8,30 @@ class MainFooter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: MainFooter.SIZE,
-      child: Center(
-        child: Text('Footer'),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            'Built with 💙 Flutter',
+            style: TextStyle(
+              fontSize: 19,
+            ),
+          ),
+          CustomCursor(
+            cursorStyle: CustomCursor.pointer,
+            child: FlatButton(
+              textColor: Colors.white.withOpacity(0.5),
+              onPressed: () => UrlUtils.openUrl('https://github.com/mastro993/fedemas-app'),
+              child: Text(
+                'Check out the code on GitHub',
+                style: TextStyle(
+                  fontSize: 14,
+                ),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

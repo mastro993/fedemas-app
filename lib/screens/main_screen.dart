@@ -35,7 +35,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     final mq = MediaQuery.of(context);
     final screenWidth = mq.size.width;
-    print(screenWidth);
+    // print(screenWidth);
     double navbarHeight;
     if (screenWidth >= ScreenUtils.WIDTH_LARGE) {
       navbarHeight = 104.0;

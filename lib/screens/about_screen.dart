@@ -16,7 +16,7 @@ class AboutScreen extends StatelessWidget {
     } else if (screenWidth >= ScreenUtils.WIDTH_MED) {
       titleFontSize = 64.0;
       textFontSize = 24.0;
-      textWidth = MediaQuery.of(context).size.width * 0.85;
+      textWidth = MediaQuery.of(context).size.width * 0.80;
     } else {
       titleFontSize = 40.0;
       textFontSize = 19.0;
@@ -24,10 +24,9 @@ class AboutScreen extends StatelessWidget {
     }
     return Container(
       alignment: Alignment.topCenter,
-      width: textWidth,
       child: Container(
-        width: 1000,
-        padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 72.0),
+        width: textWidth,
+        padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 48.0),
         //height: _mq.size.height,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -33,39 +33,22 @@ class _MainScreenState extends State<MainScreen> {
     }
   }
 
-  Widget listItem(Color color, String title) => Container(
-        decoration: BoxDecoration(
-          border: Border(
-            top: BorderSide(
-              color: Colors.red,
-              width: 1.0,
-            ),
-          ),
-        ),
-        child: Center(
-          child: Text(
-            "$title",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 14.0,
-                fontWeight: FontWeight.bold),
-          ),
-        ),
-      );
-
   ScrollController _controller;
   double _navbarHeight = 0.0;
   double _navbarOpacity = 0.0;
 
   _scrollListener() {
-    setState(() {
-      if (_controller.offset >= _navbarHeight) {
-        _navbarOpacity = 1.0;
-      } else {
-        _navbarOpacity = max(_controller.offset / _navbarHeight, 0);
-      }
-    });
+    // TODO improve performances
+
+    double newNavBarOpacity = _controller.offset >= _navbarHeight
+        ? 1.0
+        : max(_controller.offset / _navbarHeight, 0);
+
+    if (_navbarOpacity != newNavBarOpacity) {
+      setState(() {
+        _navbarOpacity = newNavBarOpacity;
+      });
+    }
   }
 
   @override
@@ -79,7 +62,6 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     final mq = MediaQuery.of(context);
     final screenWidth = mq.size.width;
-
     if (screenWidth >= ScreenUtils.WIDTH_LARGE) {
       _navbarHeight = 104.0;
     } else if (screenWidth >= ScreenUtils.WIDTH_MED) {

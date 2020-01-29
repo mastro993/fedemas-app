@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:fedemas_app/screens/about_screen.dart';
 import 'package:fedemas_app/screens/projects_screen.dart';
 import 'package:fedemas_app/utils/screen_utils.dart';
@@ -31,43 +33,102 @@ class _MainScreenState extends State<MainScreen> {
     }
   }
 
+  Widget listItem(Color color, String title) => Container(
+        decoration: BoxDecoration(
+          border: Border(
+            top: BorderSide(
+              color: Colors.red,
+              width: 1.0,
+            ),
+          ),
+        ),
+        child: Center(
+          child: Text(
+            "$title",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 14.0,
+                fontWeight: FontWeight.bold),
+          ),
+        ),
+      );
+
+  ScrollController _controller;
+  double _navbarHeight = 0.0;
+  double _navbarOpacity = 0.0;
+
+  _scrollListener() {
+    setState(() {
+      if (_controller.offset >= _navbarHeight) {
+        _navbarOpacity = 1.0;
+      } else {
+        _navbarOpacity = max(_controller.offset / _navbarHeight, 0);
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    _controller = ScrollController();
+    _controller.addListener(_scrollListener);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final mq = MediaQuery.of(context);
     final screenWidth = mq.size.width;
-    // print(screenWidth);
-    double navbarHeight;
+
     if (screenWidth >= ScreenUtils.WIDTH_LARGE) {
-      navbarHeight = 104.0;
+      _navbarHeight = 104.0;
     } else if (screenWidth >= ScreenUtils.WIDTH_MED) {
-      navbarHeight = 96.0;
+      _navbarHeight = 96.0;
     } else {
-      navbarHeight = 80.0;
+      _navbarHeight = 80.0;
     }
+
     return Scaffold(
-      appBar: NavigationBar(
-        onPageSelect: _onPageSelect,
-        selectedPage: _pageIndex,
-        preferredSize: Size.fromHeight(navbarHeight),
-      ),
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          Image.asset('images/bg.png', fit: BoxFit.cover,),
-          SingleChildScrollView(
+          Image.asset('images/bg.png', fit: BoxFit.cover),
+          CustomScrollView(
+            controller: _controller,
             physics: BouncingScrollPhysics(),
-            child: Column(
-              children: <Widget>[
-                ConstrainedBox(
-                  constraints: new BoxConstraints(
-                    minHeight: mq.size.height - navbarHeight - MainFooter.SIZE,
+            slivers: <Widget>[
+              SliverAppBar(
+                backgroundColor: Colors.black.withOpacity(_navbarOpacity),
+                floating: true,
+                pinned: false,
+                snap: true,
+                expandedHeight: _navbarHeight,
+                flexibleSpace: FlexibleSpaceBar(
+                  background: NavigationBar(
+                    onPageSelect: _onPageSelect,
+                    selectedPage: _pageIndex,
+                    preferredSize: Size.fromHeight(_navbarHeight),
                   ),
-                  child: _getCurrentPage(),
                 ),
-                MainFooter(),
-              ],
-            ),
-          )
+              ),
+              SliverList(
+                delegate: SliverChildListDelegate([
+                  Column(
+                    children: <Widget>[
+                      ConstrainedBox(
+                        constraints: new BoxConstraints(
+                          minHeight:
+                              mq.size.height - _navbarHeight - MainFooter.SIZE,
+                        ),
+                        child: _getCurrentPage(),
+                      ),
+                      MainFooter(),
+                    ],
+                  ),
+                ]),
+              )
+            ],
+          ),
         ],
       ),
       endDrawer: MainDrawer(

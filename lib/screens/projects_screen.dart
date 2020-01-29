@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:fedemas_app/model/project.dart';
@@ -46,7 +47,7 @@ class _ProjectsSummary extends StatelessWidget {
       alignment: Alignment.center,
       padding: EdgeInsets.symmetric(horizontal: 24, vertical: 48),
       child: Container(
-        width: textWidth,
+        width: min(textWidth, 1360),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
@@ -81,6 +82,10 @@ class _ProjectsGrid extends StatelessWidget {
         shortDescription: 'Car pooling app',
         released: true),
     Project(title: 'Test'),
+    Project(title: 'Test'),
+    Project(title: 'Test'),
+    Project(title: 'Test'),
+    Project(title: 'Test'),
   ];
 
   @override
@@ -91,7 +96,7 @@ class _ProjectsGrid extends StatelessWidget {
     if (screenWidth >= ScreenUtils.WIDTH_LARGE) {
       gridWidth = MediaQuery.of(context).size.width * 0.70;
     } else if (screenWidth >= ScreenUtils.WIDTH_MED) {
-      gridWidth = MediaQuery.of(context).size.width * 0.85;
+      gridWidth = MediaQuery.of(context).size.width * 0.90;
     } else {
       gridWidth = MediaQuery.of(context).size.width;
     }
@@ -100,14 +105,14 @@ class _ProjectsGrid extends StatelessWidget {
       color: Colors.black,
       padding: EdgeInsets.symmetric(vertical: 24.0),
       child: Container(
-        width: gridWidth,
+        width: min(gridWidth, 1600),
         padding: EdgeInsets.all(24.0),
         child: GridView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: _projects.length,
           gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 400.0,
+              maxCrossAxisExtent: 480.0,
               crossAxisSpacing: 48.0,
               mainAxisSpacing: 48.0),
           itemBuilder: (context, index) => _ProjectGridItem(_projects[index]),
@@ -138,17 +143,17 @@ class _ProjectGridItem extends StatelessWidget {
                     color: Colors.red,
                     fit: BoxFit.cover,
                   ),
-                  if (!_project.released)
-                    ClipRect(
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-                        child: Container(
-                          decoration: new BoxDecoration(
-                            color: Colors.black54,
-                          ),
-                        ),
-                      ),
-                    )
+                  // if (!_project.released)
+                  //   ClipRect(
+                  //     child: BackdropFilter(
+                  //       filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                  //       child: Container(
+                  //         decoration: new BoxDecoration(
+                  //           color: Colors.black54,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   )
                 ],
               ),
             ),

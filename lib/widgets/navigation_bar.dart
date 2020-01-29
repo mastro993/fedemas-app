@@ -23,7 +23,6 @@ class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
       child: Container(
         padding: EdgeInsets.all(24),
         height: preferredSize.height,
-        color: Colors.black,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,

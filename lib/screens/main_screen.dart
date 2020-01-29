@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:fedemas_app/screens/about_screen.dart';
 import 'package:fedemas_app/screens/projects_screen.dart';
 import 'package:fedemas_app/utils/screen_utils.dart';
@@ -52,109 +54,87 @@ class _MainScreenState extends State<MainScreen> {
         ),
       );
 
+  ScrollController _controller;
+  double _navbarHeight = 0.0;
+  double _navbarOpacity = 0.0;
+
+  _scrollListener() {
+    setState(() {
+      if (_controller.offset >= _navbarHeight) {
+        _navbarOpacity = 1.0;
+      } else {
+        _navbarOpacity = max(_controller.offset / _navbarHeight, 0);
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    _controller = ScrollController();
+    _controller.addListener(_scrollListener);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final mq = MediaQuery.of(context);
     final screenWidth = mq.size.width;
-    // print(screenWidth);
-    double navbarHeight;
+
     if (screenWidth >= ScreenUtils.WIDTH_LARGE) {
-      navbarHeight = 104.0;
+      _navbarHeight = 104.0;
     } else if (screenWidth >= ScreenUtils.WIDTH_MED) {
-      navbarHeight = 96.0;
+      _navbarHeight = 96.0;
     } else {
-      navbarHeight = 80.0;
+      _navbarHeight = 80.0;
     }
+
     return Scaffold(
-        body: Stack(
-      fit: StackFit.expand,
-      children: <Widget>[
-        Image.asset('images/bg.png', fit: BoxFit.cover),
-        CustomScrollView(
-          slivers: <Widget>[
-            SliverAppBar(
-              ///Properties of app bar
-              ///
-              /// Color of app bar when it is collapsed
-              backgroundColor: Colors.black,
-
-              /// Set to false so that appbar is always invisible after
-              /// collapsing
-              /// If set to true here, the app bar will expand as soon as you
-              /// start scrolling up even if you haven't reached the top
-              floating: true,
-
-              /// To make the app bar visible at all times after collapsing
-              /// we set pinned to true
-              pinned: false,
-              snap: true,
-              expandedHeight: 96.0,
-
-              ///Properties of the App Bar when it is expanded
-              flexibleSpace: FlexibleSpaceBar(
-                centerTitle: true,
-                title: Text(
-                  "SliverAppBar Widget",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold),
-                ),
-                background: Container(
-                  color: Colors.transparent,
+      body: Stack(
+        fit: StackFit.expand,
+        children: <Widget>[
+          Image.asset('images/bg.png', fit: BoxFit.cover),
+          CustomScrollView(
+            controller: _controller,
+            physics: BouncingScrollPhysics(),
+            slivers: <Widget>[
+              SliverAppBar(
+                backgroundColor: Colors.black.withOpacity(_navbarOpacity),
+                floating: true,
+                pinned: false,
+                snap: true,
+                expandedHeight: _navbarHeight,
+                flexibleSpace: FlexibleSpaceBar(
+                  background: NavigationBar(
+                    onPageSelect: _onPageSelect,
+                    selectedPage: _pageIndex,
+                    preferredSize: Size.fromHeight(_navbarHeight),
+                  ),
                 ),
               ),
-            ),
-            SliverList(
-              delegate: SliverChildListDelegate([
-                Column(
-                  children: <Widget>[
-                    ConstrainedBox(
-                      constraints: new BoxConstraints(
-                        minHeight:
-                            mq.size.height - navbarHeight - MainFooter.SIZE,
+              SliverList(
+                delegate: SliverChildListDelegate([
+                  Column(
+                    children: <Widget>[
+                      ConstrainedBox(
+                        constraints: new BoxConstraints(
+                          minHeight:
+                              mq.size.height - _navbarHeight - MainFooter.SIZE,
+                        ),
+                        child: _getCurrentPage(),
                       ),
-                      child: _getCurrentPage(),
-                    ),
-                    MainFooter(),
-                  ],
-                ),
-              ]),
-            )
-          ],
-        ),
-      ],
-    ));
-    // return Scaffold(
-    //   appBar: NavigationBar(
-    //     onPageSelect: _onPageSelect,
-    //     selectedPage: _pageIndex,
-    //     preferredSize: Size.fromHeight(navbarHeight),
-    //   ),
-    //   body: Stack(
-    //     fit: StackFit.expand,
-    //     children: <Widget>[
-    //       Image.asset('images/bg.png', fit: BoxFit.cover,),
-    //       SingleChildScrollView(
-    //         physics: BouncingScrollPhysics(),
-    //         child: Column(
-    //           children: <Widget>[
-    //             ConstrainedBox(
-    //               constraints: new BoxConstraints(
-    //                 minHeight: mq.size.height - navbarHeight - MainFooter.SIZE,
-    //               ),
-    //               child: _getCurrentPage(),
-    //             ),
-    //             MainFooter(),
-    //           ],
-    //         ),
-    //       )
-    //     ],
-    //   ),
-    //   endDrawer: MainDrawer(
-    //     selectedPage: _pageIndex,
-    //     onPageSelect: _onPageSelect,
-    //   ),
-    // );
+                      MainFooter(),
+                    ],
+                  ),
+                ]),
+              )
+            ],
+          ),
+        ],
+      ),
+      endDrawer: MainDrawer(
+        selectedPage: _pageIndex,
+        onPageSelect: _onPageSelect,
+      ),
+    );
   }
 }

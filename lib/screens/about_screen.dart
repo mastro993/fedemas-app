@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:fedemas_app/utils/screen_utils.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +18,7 @@ class AboutScreen extends StatelessWidget {
     } else if (screenWidth >= ScreenUtils.WIDTH_MED) {
       titleFontSize = 64.0;
       textFontSize = 24.0;
-      textWidth = MediaQuery.of(context).size.width * 0.80;
+      textWidth = MediaQuery.of(context).size.width * 0.85;
     } else {
       titleFontSize = 40.0;
       textFontSize = 19.0;
@@ -25,7 +27,7 @@ class AboutScreen extends StatelessWidget {
     return Container(
       alignment: Alignment.topCenter,
       child: Container(
-        width: textWidth,
+        width: min(textWidth, 1360),
         padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 48.0),
         //height: _mq.size.height,
         child: Column(

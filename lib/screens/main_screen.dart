@@ -33,39 +33,17 @@ class _MainScreenState extends State<MainScreen> {
     }
   }
 
-  Widget listItem(Color color, String title) => Container(
-        decoration: BoxDecoration(
-          border: Border(
-            top: BorderSide(
-              color: Colors.red,
-              width: 1.0,
-            ),
-          ),
-        ),
-        child: Center(
-          child: Text(
-            "$title",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 14.0,
-                fontWeight: FontWeight.bold),
-          ),
-        ),
-      );
-
   ScrollController _controller;
   double _navbarHeight = 0.0;
-  double _navbarOpacity = 0.0;
+  bool _scrolledToTop = true;
 
   _scrollListener() {
-    setState(() {
-      if (_controller.offset >= _navbarHeight) {
-        _navbarOpacity = 1.0;
-      } else {
-        _navbarOpacity = max(_controller.offset / _navbarHeight, 0);
-      }
-    });
+    bool scrolledToTop = _controller.offset <= (_navbarHeight / 2);
+    if (scrolledToTop != _scrolledToTop) {
+      setState(() {
+        _scrolledToTop = scrolledToTop;
+      });
+    }
   }
 
   @override
@@ -85,7 +63,7 @@ class _MainScreenState extends State<MainScreen> {
     } else if (screenWidth >= ScreenUtils.WIDTH_MED) {
       _navbarHeight = 96.0;
     } else {
-      _navbarHeight = 80.0;
+      _navbarHeight = 72.0;
     }
 
     return Scaffold(
@@ -98,17 +76,30 @@ class _MainScreenState extends State<MainScreen> {
             physics: BouncingScrollPhysics(),
             slivers: <Widget>[
               SliverAppBar(
+                // Empty leading removes the "back arrow" button when endDrawer is opened
+                leading: Container(),
+                // Empty actions list removes the default "burger button" to open the endDrawer
                 actions: <Widget>[Container()],
-                backgroundColor: Colors.black.withOpacity(_navbarOpacity),
+                backgroundColor: Colors.transparent,
                 floating: true,
                 pinned: false,
                 snap: true,
                 expandedHeight: _navbarHeight,
                 flexibleSpace: FlexibleSpaceBar(
-                  background: NavigationBar(
-                    onPageSelect: _onPageSelect,
-                    selectedPage: _pageIndex,
-                    preferredSize: Size.fromHeight(_navbarHeight),
+                  background: Stack(
+                    children: <Widget>[
+                      AnimatedOpacity(
+                          opacity: _scrolledToTop ? 0.0 : 1.0,
+                          duration: Duration(milliseconds: 250),
+                          child: Container(
+                            color: Colors.black,
+                          )),
+                      NavigationBar(
+                        onPageSelect: _onPageSelect,
+                        selectedPage: _pageIndex,
+                        preferredSize: Size.fromHeight(_navbarHeight),
+                      )
+                    ],
                   ),
                 ),
               ),

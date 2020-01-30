@@ -98,6 +98,7 @@ class _MainScreenState extends State<MainScreen> {
             physics: BouncingScrollPhysics(),
             slivers: <Widget>[
               SliverAppBar(
+                actions: <Widget>[Container()],
                 backgroundColor: Colors.black.withOpacity(_navbarOpacity),
                 floating: true,
                 pinned: false,

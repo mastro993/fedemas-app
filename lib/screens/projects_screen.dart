@@ -24,21 +24,27 @@ class _ProjectsSummary extends StatelessWidget {
   Widget build(BuildContext context) {
     final mq = MediaQuery.of(context);
     final screenWidth = mq.size.width;
+
     double textWidth = 0;
+    double textHeight = 0;
     double titleFontSize = 0;
     double textFontSize = 0;
+
     if (screenWidth >= ScreenUtils.WIDTH_LARGE) {
       titleFontSize = 64.0;
       textFontSize = 24.0;
       textWidth = MediaQuery.of(context).size.width * 0.60;
+      textHeight = MediaQuery.of(context).size.height * 0.70;
     } else if (screenWidth >= ScreenUtils.WIDTH_MED) {
       titleFontSize = 64.0;
       textFontSize = 24.0;
       textWidth = MediaQuery.of(context).size.width * 0.75;
+      textHeight = MediaQuery.of(context).size.height * 0.70;
     } else {
       titleFontSize = 40.0;
-      textFontSize = 19.0;
+      textFontSize = 20.0;
       textWidth = MediaQuery.of(context).size.width;
+      textHeight = MediaQuery.of(context).size.height * 0.80;
     }
 
     TextStyle titleStyle = TextStyle(
@@ -50,13 +56,11 @@ class _ProjectsSummary extends StatelessWidget {
     TextStyle paragraphStyle = TextStyle(
       fontSize: textFontSize,
       color: Colors.grey,
-      height: 1.5,
+      height: 1.85,
     );
 
     return Container(
-      constraints: BoxConstraints(
-        minHeight: MediaQuery.of(context).size.height * 0.70,
-      ),
+      constraints: BoxConstraints(minHeight: textHeight),
       alignment: Alignment.center,
       padding: EdgeInsets.symmetric(horizontal: 24, vertical: 48),
       child: Container(
@@ -73,14 +77,14 @@ class _ProjectsSummary extends StatelessWidget {
               'I\'m Federico 🙌.',
               style: paragraphStyle,
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 16),
             Text(
               'I\'m a Mobile Software Engineer with a background in Embedded Software Development based in La Spezia, Italy.',
               style: paragraphStyle,
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 16),
             Text(
-              'I enjoy solving problems developing Apps and experimenting with UI/UX, and have lots of fun doing it. If you are interested in my work scroll down to see it! 👇',
+              'I enjoy solving problems using mobile development as a fundation and experimenting with UI/UX, and have lots of fun doing it. If you are interested in my work scroll down to see it! 👇',
               style: paragraphStyle,
             )
           ],

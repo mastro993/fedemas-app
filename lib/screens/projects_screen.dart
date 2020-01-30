@@ -55,7 +55,7 @@ class _ProjectsSummary extends StatelessWidget {
 
     TextStyle paragraphStyle = TextStyle(
       fontSize: textFontSize,
-      color: Colors.grey,
+      color: Color(0xFFA8A6A1),
       height: 1.85,
     );
 

@@ -76,6 +76,7 @@ class _MainScreenState extends State<MainScreen> {
             physics: BouncingScrollPhysics(),
             slivers: <Widget>[
               SliverAppBar(
+                elevation: 0,
                 // Empty leading removes the "back arrow" button when endDrawer is opened
                 leading: Container(),
                 // Empty actions list removes the default "burger button" to open the endDrawer

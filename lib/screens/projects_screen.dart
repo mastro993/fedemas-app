@@ -40,6 +40,19 @@ class _ProjectsSummary extends StatelessWidget {
       textFontSize = 19.0;
       textWidth = MediaQuery.of(context).size.width;
     }
+
+    TextStyle titleStyle = TextStyle(
+      fontSize: titleFontSize,
+      height: 1.2,
+      fontWeight: FontWeight.w700,
+    );
+
+    TextStyle paragraphStyle = TextStyle(
+      fontSize: textFontSize,
+      color: Colors.grey,
+      height: 1.5,
+    );
+
     return Container(
       constraints: BoxConstraints(
         minHeight: MediaQuery.of(context).size.height * 0.70,
@@ -53,20 +66,22 @@ class _ProjectsSummary extends StatelessWidget {
           children: <Widget>[
             Text(
               'Hey there 👋',
-              style: TextStyle(
-                fontSize: titleFontSize,
-                height: 1.2,
-                fontWeight: FontWeight.w700,
-              ),
+              style: titleStyle,
             ),
             SizedBox(height: 16),
             Text(
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis gravida elit efficitur faucibus interdum. Praesent consectetur arcu at velit varius, nec pulvinar ipsum semper. Aliquam est leo, efficitur non tempus in, maximus sit amet quam. Mauris libero nulla, mattis eu ipsum vel, porta efficitur leo. Proin accumsan tincidunt magna ac tristique. Integer hendrerit tellus sed lectus cursus pharetra. Phasellus placerat eget enim vel condimentum. Duis pretium faucibus leo non euismod. Pellentesque vitae sapien id urna venenatis fringilla vitae quis leo. Nullam eget nibh nulla. Etiam ante massa, sollicitudin in ligula congue, auctor iaculis risus. Nulla faucibus dui ac ligula suscipit tempus. Ut posuere metus ac metus tempor dictum. Morbi placerat, enim in volutpat gravida, odio dui pulvinar risus, eu feugiat leo dui non neque.',
-              style: TextStyle(
-                fontSize: textFontSize,
-                color: Colors.white.withOpacity(0.5),
-                height: 1.5,
-              ),
+              'I\'m Federico 🙌.',
+              style: paragraphStyle,
+            ),
+            SizedBox(height: 8),
+            Text(
+              'I\'m a Mobile Software Engineer with a background in Embedded Software Development based in La Spezia, Italy.',
+              style: paragraphStyle,
+            ),
+            SizedBox(height: 8),
+            Text(
+              'I enjoy solving problems while experimenting with UI/UX, and have lots of fun doing it. If you are interested in my work scroll down to see it! 👇',
+              style: paragraphStyle,
             )
           ],
         ),

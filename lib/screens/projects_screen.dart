@@ -80,7 +80,7 @@ class _ProjectsSummary extends StatelessWidget {
             ),
             SizedBox(height: 8),
             Text(
-              'I enjoy solving problems while experimenting with UI/UX, and have lots of fun doing it. If you are interested in my work scroll down to see it! 👇',
+              'I enjoy solving problems developing Apps and experimenting with UI/UX, and have lots of fun doing it. If you are interested in my work scroll down to see it! 👇',
               style: paragraphStyle,
             )
           ],

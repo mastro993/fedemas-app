@@ -86,6 +86,7 @@ class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               ),
             if (!expanded)
+            // ! Vertical alignment!
               CustomCursor(
                 cursorStyle: CustomCursor.pointer,
                 child: IconButton(

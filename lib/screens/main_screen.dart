@@ -35,18 +35,13 @@ class _MainScreenState extends State<MainScreen> {
 
   ScrollController _controller;
   double _navbarHeight = 0.0;
-  double _navbarOpacity = 0.0;
+  bool _scrolledToTop = true;
 
   _scrollListener() {
-    // TODO improve performances
-
-    double newNavBarOpacity = _controller.offset >= _navbarHeight
-        ? 1.0
-        : max(_controller.offset / _navbarHeight, 0);
-
-    if (_navbarOpacity != newNavBarOpacity) {
+    bool scrolledToTop = _controller.offset <= (_navbarHeight / 2);
+    if (scrolledToTop != _scrolledToTop) {
       setState(() {
-        _navbarOpacity = newNavBarOpacity;
+        _scrolledToTop = scrolledToTop;
       });
     }
   }
@@ -67,7 +62,7 @@ class _MainScreenState extends State<MainScreen> {
     } else if (screenWidth >= ScreenUtils.WIDTH_MED) {
       _navbarHeight = 96.0;
     } else {
-      _navbarHeight = 80.0;
+      _navbarHeight = 72.0;
     }
 
     return Scaffold(
@@ -80,16 +75,31 @@ class _MainScreenState extends State<MainScreen> {
             physics: BouncingScrollPhysics(),
             slivers: <Widget>[
               SliverAppBar(
-                backgroundColor: Colors.black.withOpacity(_navbarOpacity),
+                elevation: 0,
+                // Empty leading removes the "back arrow" button when endDrawer is opened
+                leading: Container(),
+                // Empty actions list removes the default "burger button" to open the endDrawer
+                actions: <Widget>[Container()],
+                backgroundColor: Colors.transparent,
                 floating: true,
                 pinned: false,
                 snap: true,
                 expandedHeight: _navbarHeight,
                 flexibleSpace: FlexibleSpaceBar(
-                  background: NavigationBar(
-                    onPageSelect: _onPageSelect,
-                    selectedPage: _pageIndex,
-                    preferredSize: Size.fromHeight(_navbarHeight),
+                  background: Stack(
+                    children: <Widget>[
+                      AnimatedOpacity(
+                          opacity: _scrolledToTop ? 0.0 : 1.0,
+                          duration: Duration(milliseconds: 250),
+                          child: Container(
+                            color: Colors.black,
+                          )),
+                      NavigationBar(
+                        onPageSelect: _onPageSelect,
+                        selectedPage: _pageIndex,
+                        preferredSize: Size.fromHeight(_navbarHeight),
+                      )
+                    ],
                   ),
                 ),
               ),

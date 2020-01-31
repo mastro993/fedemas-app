@@ -79,7 +79,7 @@ class _ProjectsSummary extends StatelessWidget {
             ),
             SizedBox(height: 16),
             Text(
-              'I\'m a Mobile Software Engineer with a background in Embedded Software Development based in La Spezia, Italy.',
+              'I\'m a Software Engineer with a passion in Mobile App Development and Design based in La Spezia, Italy.',
               style: paragraphStyle,
             ),
             SizedBox(height: 16),
@@ -113,27 +113,28 @@ class _ProjectsGrid extends StatelessWidget {
     final screenWidth = mq.size.width;
     double gridWidth = 0;
     if (screenWidth >= ScreenUtils.WIDTH_LARGE) {
-      gridWidth = MediaQuery.of(context).size.width * 0.70;
+      gridWidth = screenWidth * 0.75;
     } else if (screenWidth >= ScreenUtils.WIDTH_MED) {
-      gridWidth = MediaQuery.of(context).size.width * 0.90;
+      gridWidth = screenWidth * 0.85;
     } else {
-      gridWidth = MediaQuery.of(context).size.width;
+      gridWidth = screenWidth;
     }
     return Container(
       alignment: Alignment.topCenter,
       color: Colors.black,
       padding: EdgeInsets.symmetric(vertical: 24.0),
       child: Container(
-        width: min(gridWidth, 1600),
+        width: gridWidth,
         padding: EdgeInsets.all(24.0),
         child: GridView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: _projects.length,
           gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 480.0,
-              crossAxisSpacing: 48.0,
-              mainAxisSpacing: 48.0),
+          childAspectRatio: 4 / 3,
+              maxCrossAxisExtent: 800.0,
+              crossAxisSpacing: 24.0,
+              mainAxisSpacing: 24.0),
           itemBuilder: (context, index) => _ProjectGridItem(_projects[index]),
         ),
       ),

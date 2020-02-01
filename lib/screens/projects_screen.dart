@@ -59,7 +59,7 @@ class _ProjectsSummary extends StatelessWidget {
             Text(
               '''
 I\'m Federico 🙌.
-I\'m a Software Engineer with a passion in Mobile App Development and Design based in La Spezia, Italy.
+I\'m a Software Engineer with a passion in Mobile App Development based in La Spezia, Italy.
 I enjoy solving problems using mobile development as a fundation and experimenting with UI/UX, and have lots of fun doing it. If you are interested in my work scroll down to see it! 👇''',
               style: TextStyleUtils.of(context).subTitle,
             ),

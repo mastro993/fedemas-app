@@ -21,11 +21,11 @@ abstract class ProjectDetailsScreen extends StatelessWidget {
     double navbarHeight = 0;
 
     if (screenWidth >= ScreenUtils.WIDTH_M) {
-      bodyWidth = screenWidth * 0.80;
+      bodyWidth = screenWidth * 0.70;
       navbarHeight = 104.0;
       backArrowPadding = 24;
     } else if (screenWidth >= ScreenUtils.WIDTH_S) {
-      bodyWidth = screenWidth * 0.90;
+      bodyWidth = screenWidth * 0.80;
       navbarHeight = 96.0;
       backArrowPadding = 24;
     } else {

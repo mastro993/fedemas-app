@@ -1,6 +1,9 @@
 import 'package:fedemas_app/screens/project_details_screen.dart';
+import 'package:fedemas_app/utils/custom_cursor.dart';
 import 'package:fedemas_app/utils/text_style_utils.dart';
+import 'package:fedemas_app/utils/url_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Home2WorkProjectScreen extends ProjectDetailsScreen {
   static const String ROUTE = "/project/home2work/";
@@ -10,21 +13,64 @@ class Home2WorkProjectScreen extends ProjectDetailsScreen {
 
   Widget getBody(BuildContext context) {
     return Container(
-      child: Text(
-        '''
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam scelerisque metus vel semper tempus. Cras pharetra augue non facilisis hendrerit. Aliquam in dictum justo, sed suscipit dui. Maecenas pretium diam non tellus viverra ultricies. Duis quis dignissim lectus. Nulla varius dolor commodo tortor bibendum efficitur. Phasellus dictum lorem ut blandit fringilla. Sed facilisis est sed convallis sagittis. Nulla sodales tortor vel tortor facilisis tincidunt. Pellentesque tellus tellus, lobortis non enim lacinia, vestibulum facilisis lorem. Fusce porttitor sollicitudin ligula in eleifend. Nam aliquam purus in sapien maximus, non suscipit libero lobortis. Morbi suscipit risus eget ante pulvinar mollis. Vestibulum hendrerit, mi id auctor auctor, nibh dolor pharetra lorem, at varius eros dui non magna. Vestibulum quis tempus elit. Pellentesque ut odio nec eros condimentum pretium.
+        child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          '''
+Home2Work is a platform with the aim of simplyfing car sharing between employees of the same company (or group of companies), suggesting which employees have a similar home-work route and allowing them to share their car to go to work. This allows to reduce the traffic, the air pollution and the employees expenses.
 
-Vestibulum placerat ac ex nec elementum. Maecenas eget arcu quis tortor ultricies auctor. Curabitur rhoncus, mauris sit amet maximus ornare, justo mauris eleifend sem, quis pharetra nisl libero et risus. Proin commodo nibh sem, quis tristique mi varius id. Integer tortor magna, congue dictum molestie vel, scelerisque in eros. Mauris arcu nisi, faucibus lobortis faucibus nec, porta quis tellus. Suspendisse fermentum orci at tellus pretium, et imperdiet tellus laoreet. Nullam rutrum nulla id sem finibus maximus. Quisque ut tortor egestas nulla varius ultricies a ac metus. Nunc porta dictum est id imperdiet. Donec vehicula quis libero non ornare.
+Home2Work consists of a native Android app and an Asp.net server.
 
-Ut nunc eros, sollicitudin quis ligula ac, facilisis maximus tortor. Quisque viverra tellus eu sollicitudin tincidunt. Nullam efficitur tellus eget mi imperdiet gravida. Curabitur nulla nisi, efficitur id turpis ut, pretium dapibus ante. Curabitur vitae magna egestas, consectetur urna vel, tristique enim. Duis vitae nisl eu mauris posuere interdum. Nullam commodo ipsum ornare leo aliquet, ut efficitur leo fermentum. Pellentesque et consectetur libero. Duis quis euismod tortor. Donec tempus hendrerit quam. Nam tincidunt consequat mollis.
+The app has been developed using Kotlin following the Clean Architecture principles. It utilizes the Activity Recognition API to understand if the user is driving and keep track of the movements, which are stored in a local SQLite database.
+It also includes the ability to interact with other usesr with an instant messagin (IM) system and some social features such as user profiles and feeds.
 
-Nullam risus ante, pretium eu tristique vitae, euismod a tortor. Vestibulum elementum tincidunt eros, non efficitur nibh convallis nec. Curabitur neque enim, suscipit sit amet condimentum sed, viverra eget enim. Etiam ut tincidunt odio. Etiam in scelerisque mi. Etiam interdum, velit vel aliquam suscipit, velit metus feugiat dui, eu fringilla metus justo a leo. Fusce libero lorem, vulputate tincidunt nibh sit amet, pretium volutpat nibh. Curabitur viverra, leo ut volutpat laoreet, ante enim rhoncus justo, a posuere urna metus ac velit. Cras mattis venenatis tempor.
+The server is an ASP.NET server used to store the data collected by the app and later compute matches between users. It exposes the resources through a RESTful API.
 
-Nulla gravida, mi at eleifend tincidunt, dolor nulla mattis est, ac hendrerit neque augue vestibulum lorem. Nullam aliquet magna nec lacinia finibus. Maecenas consequat purus risus, non fringilla sapien pellentesque nec. Phasellus nec turpis dictum lectus euismod aliquam nec et sem. Cras sit amet malesuada enim. Duis cursus lorem id nunc dictum bibendum. Suspendisse odio purus, auctor at metus eget, scelerisque accumsan ante. Sed rutrum mollis velit, nec vestibulum justo tempor nec. Duis ullamcorper ex rhoncus nulla mollis vulputate.
-      
+Home2Work integrates some gamification features to increase employees engagement and productivity. Some of these features are:
+- a point systems, named Karma points, awarded for completed car shares between users, which can be used later as an exchange currency in dedicate stores (to get physical goods);
+- leveling systems based on experience points;
+- daily, weekly and monthly challenges;
+- users statistics and charts.
+
+Home2Work was developed for the Mobile App Awards 2016 organized by the University of Studies of Parma and later it became subject of my graduation thesis.  
       ''',
-        style: TextStyleUtils.of(context).body,
-      ),
-    );
+          style: TextStyleUtils.of(context).body,
+        ),
+        CustomCursor(
+          cursorStyle: CustomCursor.pointer,
+          child: FlatButton(
+            padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+            color: Colors.green,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24.0),
+            ),
+            onPressed: () => UrlUtils.openUrl('http://home2work.it'),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 4),
+                  child: const Icon(
+                    FontAwesomeIcons.link,
+                    color: Colors.white,
+                    size: 16.0,
+                  ),
+                ),
+                SizedBox(width: 16),
+                Text(
+                  'Visit website',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        )
+      ],
+    ));
   }
 }

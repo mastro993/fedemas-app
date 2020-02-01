@@ -4,14 +4,16 @@ class Project {
   final String title;
   final String shortDescription;
   final String coverImage;
-  final String route;
-  final bool released;
+  final String url;
+  final bool isReleased;
+  final bool isExternalUrl;
 
   const Project({
     @required this.title,
     this.shortDescription = '',
     this.coverImage = 'assets/images/project_placeholder.png',
-    this.route = '',
-    this.released = false,
+    this.url = '',
+    this.isReleased = false,
+    this.isExternalUrl = false
   });
 }

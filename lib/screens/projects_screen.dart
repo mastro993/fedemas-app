@@ -6,6 +6,7 @@ import 'package:fedemas_app/screens/projects/home2work_project_screen.dart';
 import 'package:fedemas_app/utils/custom_cursor.dart';
 import 'package:fedemas_app/utils/screen_utils.dart';
 import 'package:fedemas_app/utils/text_style_utils.dart';
+import 'package:fedemas_app/utils/url_utils.dart';
 import 'package:flutter/material.dart';
 
 class ProjectsScreen extends StatelessWidget {
@@ -72,12 +73,14 @@ I enjoy solving problems using mobile development as a fundation and experimenti
 class _ProjectsGrid extends StatelessWidget {
   final _projects = [
     Project(
-      title: 'Home2Work',
-      shortDescription: 'Car pooling app',
-      released: true,
-      coverImage: 'assets/images/projects/home2work_cover.jpg',
-      route: Home2WorkProjectScreen.ROUTE,
-    ),
+        title: 'Home2Work',
+        shortDescription: 'Car pooling app',
+        isReleased: true,
+        coverImage: 'assets/images/projects/home2work_cover.jpg',
+        url: Home2WorkProjectScreen.ROUTE,
+        // isExternalUrl: true,
+        // url: 'http://home2work.it',
+        ),
     Project(title: 'ND'),
   ];
 
@@ -132,11 +135,15 @@ class _ProjectGridItem extends StatelessWidget {
       cursorStyle: CustomCursor.pointer,
       child: GestureDetector(
         onTap: () {
-          if (_project.route.isNotEmpty) {
-            Navigator.of(context).pushNamed(_project.route);
+          if (_project.url.isNotEmpty) {
+            if (_project.isExternalUrl) {
+              UrlUtils.openUrl(_project.url);
+            } else {
+              Navigator.of(context).pushNamed(_project.url);
+            }
           }
         },
-        child: _project.released
+        child: _project.isReleased
             ? Container(
                 decoration: new BoxDecoration(
                   image: new DecorationImage(
@@ -153,7 +160,10 @@ class _ProjectGridItem extends StatelessWidget {
                   ),
                 ),
                 child: Center(
-                  child: Text('Coming Soon', style: TextStyleUtils.of(context).subTitle),
+                  child: Text(
+                    'Coming Soon',
+                    style: TextStyleUtils.of(context).subTitle,
+                  ),
                 ),
               ),
         // child: Container(

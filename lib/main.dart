@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Fedemas',
+      title: 'Federico Mastrini - Software Developer',
       theme: ThemeData(
         buttonColor: Color.fromRGBO(54, 124, 255, 1.0),
         accentColor: Color.fromRGBO(54, 124, 255, 1.0),

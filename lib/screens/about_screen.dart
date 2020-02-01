@@ -50,16 +50,16 @@ class AboutScreen extends StatelessWidget {
               'Hey there 👋 nice to meet you!',
               style: titleStyle,
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 24),
             Text(
               '''Federico here. I am a Software Developer who’s passionate about mobile app development and UI UX design.
-I’ve been developing software since I was young, when I enjoyed creating simple applications for the online communities I frequented at the time: the good ol’ days with no customers to satisfy and requirements to be respected, just code.
-I always enjoyed design, develop and create any kind of software: give me a problem that can be solved with lines of code and I’m happy to solve it.
+I’ve been developing software since I was young, when I enjoyed creating simple applications for the online communities I frequented at the time: the good ol’ days with no customers to satisfy and requirements to be respected, just code.\n
+I always enjoyed design, develop and create any kind of software: give me a problem that can be solved with lines of code and I’m happy to solve it.\n
 I consider myself a proactive and insightful person. I am always looking for something to do and I hate downtime. When I have the opportunity to learn something new I never miss the chance to do it.
 This type of approach on things has led me to be able to work in different branches of software such as management software, ERPs and embedded applications, and come into contact with different technologies and different programming languages such as Python, C / C++, Java, JavaScript, Ruby, .NET, Kotlin, Dart, Android and iOS.
-I love to stay up to date on the technologies I use and new ones by reading daily articles from the sector on Medium, participating in the dev community on Reddit and following online courses on Udemy.
-I started developing mobile app during the first years of university and it was "love at first sight". The things that most attracted me to this world are the ease of use, the ease of reaching the end users and the ability to solve real problems with real pocket art works.
-Finally, besides software development, I am passionate about RPG video games, oriental cuisine and good wine (every now and then). I practice a lot of sport, in particular weightlifting, which beside taking me in good shape it has taught me to have constancy and determination in everything I do, in the everyday life and in work.
+I love to stay up to date on the technologies I use and new ones by reading daily articles from the sector on Medium, participating in the dev community on Reddit and following online courses on Udemy.\n
+I started developing mobile app during the first years of university and it was "love at first sight". The things that most attracted me to this world are the ease of use, the ease of reaching the end users and the ability to solve real problems with real pocket art works.\n
+Finally, besides software development, I am passionate about RPG video games, oriental cuisine and good wine (every now and then). I practice a lot of sport, in particular weightlifting, which beside taking me in good shape it has taught me to have constancy and determination in everything I do, in the everyday life and in work.\n
 If you are interested in knowing more about me and my past experiences you can take a look at my CV here.
 ''',
               style: paragraphStyle,

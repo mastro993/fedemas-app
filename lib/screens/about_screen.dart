@@ -13,11 +13,11 @@ class AboutScreen extends StatelessWidget {
     double textFontSize = 0;
     if (screenWidth >= ScreenUtils.WIDTH_LARGE) {
       titleFontSize = 64.0;
-      textFontSize = 24.0;
+      textFontSize = 19.0;
       textWidth = MediaQuery.of(context).size.width * 0.70;
     } else if (screenWidth >= ScreenUtils.WIDTH_MED) {
       titleFontSize = 64.0;
-      textFontSize = 24.0;
+      textFontSize = 19.0;
       textWidth = MediaQuery.of(context).size.width * 0.85;
     } else {
       titleFontSize = 34.0;
@@ -52,11 +52,16 @@ class AboutScreen extends StatelessWidget {
             ),
             SizedBox(height: 16),
             Text(
-              '''Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis gravida elit efficitur faucibus interdum. Praesent consectetur arcu at velit varius, nec pulvinar ipsum semper. Aliquam est leo, efficitur non tempus in, maximus sit amet quam. Mauris libero nulla, mattis eu ipsum vel, porta efficitur leo. Proin accumsan tincidunt magna ac tristique. Integer hendrerit tellus sed lectus cursus pharetra. Phasellus placerat eget enim vel condimentum. Duis pretium faucibus leo non euismod. Pellentesque vitae sapien id urna venenatis fringilla vitae quis leo. Nullam eget nibh nulla. Etiam ante massa, sollicitudin in ligula congue, auctor iaculis risus. Nulla faucibus dui ac ligula suscipit tempus. Ut posuere metus ac metus tempor dictum. Morbi placerat, enim in volutpat gravida, odio dui pulvinar risus, eu feugiat leo dui non neque.
-
-Sed at ipsum commodo ex sagittis elementum. Vestibulum nec nibh gravida, lobortis diam sit amet, malesuada nunc. In nulla diam, pharetra et luctus ut, efficitur sit amet erat. Nulla faucibus, elit a consectetur volutpat, dui ipsum vehicula urna, sit amet interdum ligula ligula et quam. Nam id porta enim. Mauris facilisis, libero eget posuere suscipit, nibh tellus eleifend ante, at pulvinar dolor est in sem. Nullam placerat sem ac ante lacinia, vitae mattis felis varius. Ut ac arcu efficitur, sagittis nibh et, aliquet justo. Donec consequat placerat venenatis. Fusce suscipit metus sit amet egestas condimentum.
-
-Aliquam ut magna eu orci luctus elementum a quis lorem. Suspendisse et est elit. Nunc nunc dui, laoreet eget dictum nec, posuere eu arcu. Ut convallis lobortis purus, et iaculis quam semper eget. Phasellus eget dolor orci. Curabitur id mi in nulla porta pellentesque in vitae turpis. Duis blandit, enim at tincidunt vehicula, sapien sem pretium nisi, non pharetra elit enim et velit. Morbi quis arcu in nulla convallis accumsan. Nunc scelerisque eget diam ut eleifend. Curabitur enim nisl, porta ac rhoncus vel, aliquet varius magna. Proin diam eros, convallis ut turpis ac, mollis ullamcorper ex.''',
+              '''Federico here. I am a Software Developer who’s passionate about mobile app development and UI UX design.
+I’ve been developing software since I was young, when I enjoyed creating simple applications for the online communities I frequented at the time: the good ol’ days with no customers to satisfy and requirements to be respected, just code.
+I always enjoyed design, develop and create any kind of software: give me a problem that can be solved with lines of code and I’m happy to solve it.
+I consider myself a proactive and insightful person. I am always looking for something to do and I hate downtime. When I have the opportunity to learn something new I never miss the chance to do it.
+This type of approach on things has led me to be able to work in different branches of software such as management software, ERPs and embedded applications, and come into contact with different technologies and different programming languages such as Python, C / C++, Java, JavaScript, Ruby, .NET, Kotlin, Dart, Android and iOS.
+I love to stay up to date on the technologies I use and new ones by reading daily articles from the sector on Medium, participating in the dev community on Reddit and following online courses on Udemy.
+I started developing mobile app during the first years of university and it was "love at first sight". The things that most attracted me to this world are the ease of use, the ease of reaching the end users and the ability to solve real problems with real pocket art works.
+Finally, besides software development, I am passionate about RPG video games, oriental cuisine and good wine (every now and then). I practice a lot of sport, in particular weightlifting, which beside taking me in good shape it has taught me to have constancy and determination in everything I do, in the everyday life and in work.
+If you are interested in knowing more about me and my past experiences you can take a look at my CV here.
+''',
               style: paragraphStyle,
             )
           ],

@@ -57,9 +57,9 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     final mq = MediaQuery.of(context);
     final screenWidth = mq.size.width;
-    if (screenWidth >= ScreenUtils.WIDTH_LARGE) {
+    if (screenWidth >= ScreenUtils.WIDTH_M) {
       _navbarHeight = 104.0;
-    } else if (screenWidth >= ScreenUtils.WIDTH_MED) {
+    } else if (screenWidth >= ScreenUtils.WIDTH_S) {
       _navbarHeight = 96.0;
     } else {
       _navbarHeight = 72.0;
@@ -69,7 +69,7 @@ class _MainScreenState extends State<MainScreen> {
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          Image.asset('images/bg.png', fit: BoxFit.cover),
+          Image.network('/assets/images/bg.png', fit: BoxFit.cover),
           CustomScrollView(
             controller: _controller,
             physics: BouncingScrollPhysics(),
@@ -110,10 +110,11 @@ class _MainScreenState extends State<MainScreen> {
                       ConstrainedBox(
                         constraints: new BoxConstraints(
                           minHeight:
-                              mq.size.height - _navbarHeight - MainFooter.SIZE,
+                              mq.size.height - _navbarHeight - MainFooter.SIZE - 80,
                         ),
                         child: _getCurrentPage(),
                       ),
+                      SizedBox(height: 72),
                       MainFooter(),
                     ],
                   ),

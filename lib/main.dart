@@ -1,4 +1,5 @@
 import 'package:fedemas_app/screens/main_screen.dart';
+import 'package:fedemas_app/screens/projects/home2work_project_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -18,6 +19,9 @@ class MyApp extends StatelessWidget {
             fontFamily: 'SF Pro'),
       ),
       home: MainScreen(),
+      routes: {
+          Home2WorkProjectScreen.ROUTE: (ctx) => Home2WorkProjectScreen(),
+        },
     );
   }
 }

@@ -10,8 +10,8 @@ class Project {
   const Project({
     @required this.title,
     this.shortDescription = '',
-    this.coverImage = 'https://digidirect.info/wp-content/uploads/2019/02/data-1-620x342.jpg',
-    this.route = '/',
+    this.coverImage = 'assets/images/project_placeholder.png',
+    this.route = '',
     this.released = false,
   });
 }

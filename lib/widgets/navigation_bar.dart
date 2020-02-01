@@ -18,7 +18,7 @@ class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final mq = MediaQuery.of(context);
     final screenWidth = mq.size.width;
-    final expanded = screenWidth >= ScreenUtils.WIDTH_LARGE;
+    final expanded = screenWidth >= ScreenUtils.WIDTH_M;
     return SafeArea(
       child: Container(
         padding: EdgeInsets.all(24),

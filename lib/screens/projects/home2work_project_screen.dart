@@ -1,4 +1,5 @@
 import 'package:fedemas_app/screens/project_details_screen.dart';
+import 'package:fedemas_app/utils/text_style_utils.dart';
 import 'package:flutter/material.dart';
 
 class Home2WorkProjectScreen extends ProjectDetailsScreen {
@@ -7,9 +8,8 @@ class Home2WorkProjectScreen extends ProjectDetailsScreen {
   String getTitle() => 'Home2Work';
   String getSubtitle() => 'A car pooling app';
 
-  Widget getBody() {
+  Widget getBody(BuildContext context) {
     return Container(
-      height: 2000,
       child: Text(
         '''
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam scelerisque metus vel semper tempus. Cras pharetra augue non facilisis hendrerit. Aliquam in dictum justo, sed suscipit dui. Maecenas pretium diam non tellus viverra ultricies. Duis quis dignissim lectus. Nulla varius dolor commodo tortor bibendum efficitur. Phasellus dictum lorem ut blandit fringilla. Sed facilisis est sed convallis sagittis. Nulla sodales tortor vel tortor facilisis tincidunt. Pellentesque tellus tellus, lobortis non enim lacinia, vestibulum facilisis lorem. Fusce porttitor sollicitudin ligula in eleifend. Nam aliquam purus in sapien maximus, non suscipit libero lobortis. Morbi suscipit risus eget ante pulvinar mollis. Vestibulum hendrerit, mi id auctor auctor, nibh dolor pharetra lorem, at varius eros dui non magna. Vestibulum quis tempus elit. Pellentesque ut odio nec eros condimentum pretium.
@@ -23,7 +23,7 @@ Nullam risus ante, pretium eu tristique vitae, euismod a tortor. Vestibulum elem
 Nulla gravida, mi at eleifend tincidunt, dolor nulla mattis est, ac hendrerit neque augue vestibulum lorem. Nullam aliquet magna nec lacinia finibus. Maecenas consequat purus risus, non fringilla sapien pellentesque nec. Phasellus nec turpis dictum lectus euismod aliquam nec et sem. Cras sit amet malesuada enim. Duis cursus lorem id nunc dictum bibendum. Suspendisse odio purus, auctor at metus eget, scelerisque accumsan ante. Sed rutrum mollis velit, nec vestibulum justo tempor nec. Duis ullamcorper ex rhoncus nulla mollis vulputate.
       
       ''',
-        style: paragraphStyle,
+        style: TextStyleUtils.of(context).body,
       ),
     );
   }

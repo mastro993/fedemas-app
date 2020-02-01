@@ -5,6 +5,7 @@ import 'package:fedemas_app/model/project.dart';
 import 'package:fedemas_app/screens/projects/home2work_project_screen.dart';
 import 'package:fedemas_app/utils/custom_cursor.dart';
 import 'package:fedemas_app/utils/screen_utils.dart';
+import 'package:fedemas_app/utils/text_style_utils.dart';
 import 'package:flutter/material.dart';
 
 class ProjectsScreen extends StatelessWidget {
@@ -28,37 +29,17 @@ class _ProjectsSummary extends StatelessWidget {
 
     double textWidth = 0;
     double textHeight = 0;
-    double titleFontSize = 0;
-    double textFontSize = 0;
 
     if (screenWidth >= ScreenUtils.WIDTH_M) {
-      titleFontSize = 64.0;
-      textFontSize = 24.0;
       textWidth = MediaQuery.of(context).size.width * 0.60;
       textHeight = MediaQuery.of(context).size.height * 0.70;
     } else if (screenWidth >= ScreenUtils.WIDTH_S) {
-      titleFontSize = 64.0;
-      textFontSize = 24.0;
       textWidth = MediaQuery.of(context).size.width * 0.75;
       textHeight = MediaQuery.of(context).size.height * 0.70;
     } else {
-      titleFontSize = 40.0;
-      textFontSize = 20.0;
       textWidth = MediaQuery.of(context).size.width;
       textHeight = MediaQuery.of(context).size.height * 0.80;
     }
-
-    TextStyle titleStyle = TextStyle(
-      fontSize: titleFontSize,
-      height: 1.2,
-      fontWeight: FontWeight.w700,
-    );
-
-    TextStyle paragraphStyle = TextStyle(
-      fontSize: textFontSize,
-      color: Color(0xFFA8A6A1),
-      height: 1.85,
-    );
 
     return Container(
       constraints: BoxConstraints(minHeight: textHeight),
@@ -71,14 +52,15 @@ class _ProjectsSummary extends StatelessWidget {
           children: <Widget>[
             Text(
               'Hey there 👋',
-              style: titleStyle,
+              style: TextStyleUtils.of(context).heading,
             ),
             SizedBox(height: 16),
             Text(
-              '''I\'m Federico 🙌.
+              '''
+I\'m Federico 🙌.
 I\'m a Software Engineer with a passion in Mobile App Development and Design based in La Spezia, Italy.
 I enjoy solving problems using mobile development as a fundation and experimenting with UI/UX, and have lots of fun doing it. If you are interested in my work scroll down to see it! 👇''',
-              style: paragraphStyle,
+              style: TextStyleUtils.of(context).subTitle,
             ),
           ],
         ),
@@ -96,7 +78,6 @@ class _ProjectsGrid extends StatelessWidget {
       coverImage: 'assets/images/projects/home2work_cover.jpg',
       route: Home2WorkProjectScreen.ROUTE,
     ),
-    Project(title: 'ND'),
     Project(title: 'ND'),
   ];
 
@@ -155,56 +136,51 @@ class _ProjectGridItem extends StatelessWidget {
             Navigator.of(context).pushNamed(_project.route);
           }
         },
-        child: Container(
-          alignment: Alignment.topCenter,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              Expanded(
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: <Widget>[
-                    Image.network(
-                      _project.coverImage,
-                      color: Colors.red,
-                      fit: BoxFit.cover,
-                    ),
-                    // if (!_project.released)
-                    //   ClipRect(
-                    //     child: BackdropFilter(
-                    //       filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                    //       child: Container(
-                    //         decoration: new BoxDecoration(
-                    //           color: Colors.black54,
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   )
-                  ],
+        child: _project.released
+            ? Container(
+                decoration: new BoxDecoration(
+                  image: new DecorationImage(
+                    image: new NetworkImage(_project.coverImage),
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              ),
-              SizedBox(height: 8),
-              Text(
-                _project.released ? _project.title : 'Coming Soon',
-                style: TextStyle(
-                  fontSize: 19,
-                  height: 1.5,
-                  fontWeight: FontWeight.w700,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              Text(
-                _project.shortDescription,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.white.withOpacity(0.5),
-                  height: 1.5,
-                ),
-                textAlign: TextAlign.center,
               )
-            ],
-          ),
-        ),
+            : Container(
+                decoration: new BoxDecoration(
+                  border: Border.all(
+                    width: 2,
+                    color: const Color(0xFFA8A6A1),
+                  ),
+                ),
+                child: Center(
+                  child: Text('Coming Soon', style: TextStyleUtils.of(context).subTitle),
+                ),
+              ),
+        // child: Container(
+        //   decoration: new BoxDecoration(
+        //     image: new DecorationImage(
+        //       image: new NetworkImage(_project.coverImage),
+        //       fit: BoxFit.cover,
+        //     ),
+        //   ),
+        //   child: _project.released
+        //       ? Container()
+        //       : ClipRect(
+        //           child: new BackdropFilter(
+        //             filter: new ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+        //             child: new Container(
+        //               decoration: new BoxDecoration(
+        //                   color: Colors.white.withOpacity(0.0)),
+        //               child: Center(
+        //                 child: Text(
+        //                   'Coming Soon',
+        //                   style: TextStyleUtils.of(context).title,
+        //                 ),
+        //               ),
+        //             ),
+        //           ),
+        //         ),
+        // ),
       ),
     );
   }

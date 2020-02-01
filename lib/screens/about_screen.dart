@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:fedemas_app/utils/custom_cursor.dart';
 import 'package:fedemas_app/utils/screen_utils.dart';
+import 'package:fedemas_app/utils/text_style_utils.dart';
 import 'package:fedemas_app/utils/url_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -12,33 +13,13 @@ class AboutScreen extends StatelessWidget {
     final mq = MediaQuery.of(context);
     final screenWidth = mq.size.width;
     double textWidth = 0;
-    double titleFontSize = 0;
-    double textFontSize = 0;
     if (screenWidth >= ScreenUtils.WIDTH_M) {
-      titleFontSize = 64.0;
-      textFontSize = 19.0;
       textWidth = MediaQuery.of(context).size.width * 0.70;
     } else if (screenWidth >= ScreenUtils.WIDTH_S) {
-      titleFontSize = 64.0;
-      textFontSize = 19.0;
       textWidth = MediaQuery.of(context).size.width * 0.85;
     } else {
-      titleFontSize = 34.0;
-      textFontSize = 17.0;
       textWidth = MediaQuery.of(context).size.width;
     }
-
-    final titleStyle = TextStyle(
-      fontSize: titleFontSize,
-      height: 1.2,
-      fontWeight: FontWeight.w700,
-    );
-
-    final paragraphStyle = TextStyle(
-      fontSize: textFontSize,
-      color: Color(0xFFA8A6A1),
-      height: 1.8,
-    );
 
     return Container(
       alignment: Alignment.center,
@@ -51,7 +32,7 @@ class AboutScreen extends StatelessWidget {
           children: <Widget>[
             Text(
               'Hey there 👋 nice to meet you!',
-              style: titleStyle,
+              style: TextStyleUtils.of(context).heading,
             ),
             SizedBox(height: 24),
             Text(
@@ -66,7 +47,7 @@ I started developing mobile apps during the first years of university and it was
 Finally, besides software development, I am passionate about RPG video games, oriental cuisine and good wine (every now and then). I practice a lot of sport, in particular weightlifting, which beside taking me in good shape it has taught me to have constancy and determination in everything I do, in the everyday life and in work.\n
 If you are interested in knowing more about me and my past experiences you can take a look at my CV here below.
 ''',
-              style: paragraphStyle,
+              style: TextStyleUtils.of(context).body,
             ),
             SizedBox(height: 24),
             DocumentButton(

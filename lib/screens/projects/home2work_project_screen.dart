@@ -37,38 +37,76 @@ Home2Work was developed for the Mobile App Awards 2016 organized by the Universi
       ''',
           style: TextStyleUtils.of(context).body,
         ),
-        CustomCursor(
-          cursorStyle: CustomCursor.pointer,
-          child: FlatButton(
-            padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
-            color: Colors.green,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(24.0),
-            ),
-            onPressed: () => UrlUtils.openUrl('http://home2work.it'),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 4),
-                  child: const Icon(
-                    FontAwesomeIcons.link,
-                    color: Colors.white,
-                    size: 16.0,
-                  ),
+        Row(
+          children: <Widget>[
+            CustomCursor(
+              cursorStyle: CustomCursor.pointer,
+              child: FlatButton(
+                padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+                color: Colors.green,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(24.0),
                 ),
-                SizedBox(width: 16),
-                Text(
-                  'Visit website',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                  ),
+                onPressed: () => UrlUtils.openUrl('http://home2work.it'),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 4),
+                      child: const Icon(
+                        FontAwesomeIcons.link,
+                        color: Colors.white,
+                        size: 16.0,
+                      ),
+                    ),
+                    SizedBox(width: 16),
+                    Text(
+                      'Visit website',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
+            SizedBox(width: 16.0,),
+            CustomCursor(
+              cursorStyle: CustomCursor.pointer,
+              child: FlatButton(
+                padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+                color: Colors.blue,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(24.0),
+                ),
+                onPressed: () => UrlUtils.openUrl('https://drive.google.com/file/d/161K-cgiNw8HgR21qKlwB1jwtUwTmEoeC/view?usp=sharing'),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 4),
+                      child: const Icon(
+                        FontAwesomeIcons.file,
+                        color: Colors.white,
+                        size: 16.0,
+                      ),
+                    ),
+                    SizedBox(width: 16),
+                    Text(
+                      'Read thesis',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
         )
       ],
     ));

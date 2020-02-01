@@ -81,7 +81,7 @@ Home2Work was developed for the Mobile App Awards 2016 organized by the Universi
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(24.0),
                 ),
-                onPressed: () => UrlUtils.openUrl('https://drive.google.com/file/d/161K-cgiNw8HgR21qKlwB1jwtUwTmEoeC/view?usp=sharing'),
+                onPressed: () => UrlUtils.openUrl('/assets/docs/thesis.pdf'),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,

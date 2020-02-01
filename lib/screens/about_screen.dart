@@ -51,10 +51,9 @@ If you are interested in knowing more about me and my past experiences you can t
             ),
             SizedBox(height: 24),
             DocumentButton(
-              title: 'Download CV',
+              title: 'Read CV',
               color: Colors.blue,
-              onPressed: () => UrlUtils.openUrl(
-                  'https://drive.google.com/file/d/1Dvo4VrmWfZUnKPEIIDozxvX116fjs0Af/view?usp=sharing'),
+              onPressed: () => UrlUtils.openUrl('/assets/docs/cv.pdf'),
             ),
           ],
         ),

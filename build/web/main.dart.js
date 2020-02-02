@@ -23620,7 +23620,7 @@ s=F.aR(a,!1).a.b*0.7}else if(o>=768){t=F.aR(a,!1).a.a*0.75
 s=F.aR(a,!1).a.b*0.7}else{t=F.aR(a,!1).a.a
 s=F.aR(a,!1).a.b*0.8}r=Math.min(H.l(t),1360)
 q=Q.iT(a)
-return M.bA(C.F,M.bA(p,T.fZ(H.b([L.cx("Hey there \ud83d\udc4b",q.gqj(q)),new T.cl(p,16,p,p),L.cx("I'm Federico \ud83d\ude4c.\nI'm a Software Engineer with a passion in Mobile App Development and Design based in La Spezia, Italy.\nI enjoy solving problems using mobile development as a fundation and experimenting with UI/UX, and have lots of fun doing it. If you are interested in my work scroll down to see it! \ud83d\udc47",Q.iT(a).gtK())],u.E),C.bH,C.a9,C.aa),p,p,p,p,p,p,r),p,new S.a0(0,1/0,s,1/0),p,p,p,new V.ar(24,48,24,48),p)}}
+return M.bA(C.F,M.bA(p,T.fZ(H.b([L.cx("Hey there \ud83d\udc4b",q.gqj(q)),new T.cl(p,16,p,p),L.cx("I'm Federico \ud83d\ude4c.\nI'm a Software Engineer with a passion in Mobile App Development and UI Design based in La Spezia, Italy.\nI enjoy solving problems using mobile development as a fundation and experimenting with UI/UX, and have lots of fun doing it. If you are interested in my work scroll down to see it! \ud83d\udc47",Q.iT(a).gtK())],u.E),C.bH,C.a9,C.aa),p,p,p,p,p,p,r),p,new S.a0(0,1/0,s,1/0),p,p,p,new V.ar(24,48,24,48),p)}}
 A.Av.prototype={
 H:function(a){var t,s,r=null,q=F.aR(a,!1).a.a
 if(q>=1280){t=q*0.7

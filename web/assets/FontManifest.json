@@ -8,54 +8,6 @@
         ]
     },
     {
-        "family": "Lato",
-        "fonts": [
-            {
-                "asset": "fonts/Lato-Black.ttf",
-                "weight": 900
-            },
-            {
-                "asset": "fonts/Lato-BlackItalic.ttf",
-                "weight": 900,
-                "style": "italic"
-            },
-            {
-                "asset": "fonts/Lato-Bold.ttf",
-                "weight": 700
-            },
-            {
-                "asset": "fonts/Lato-BoldItalic.ttf",
-                "weight": 700,
-                "style": "italic"
-            },
-            {
-                "asset": "fonts/Lato-Regular.ttf"
-            },
-            {
-                "asset": "fonts/Lato-Italic.ttf",
-                "style": "italic"
-            },
-            {
-                "asset": "fonts/Lato-Light.ttf",
-                "weight": 300
-            },
-            {
-                "asset": "fonts/Lato-LightItalic.ttf",
-                "weight": 300,
-                "style": "italic"
-            },
-            {
-                "asset": "fonts/Lato-Thin.ttf",
-                "weight": 100
-            },
-            {
-                "asset": "fonts/Lato-ThinItalic.ttf",
-                "weight": 100,
-                "style": "italic"
-            }
-        ]
-    },
-    {
         "family": "SF Pro",
         "fonts": [
             {
@@ -74,22 +26,6 @@
                 "weight": 200
             }
 
-        ]
-    },
-    {
-        "family": "Yantramanav",
-        "fonts": [
-            {
-                "asset": "fonts/Yantramanav-Regular.ttf"
-            },
-            {
-                "asset": "fonts/Yantramanav-Black.ttf",
-                "weight": 900
-            },
-            {
-                "asset": "fonts/Yantramanav-Bold.ttf",
-                "weight": 800
-            }
         ]
     },
     {

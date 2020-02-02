@@ -3,9 +3,9 @@
     "short_name": "fedemas",
     "start_url": ".",
     "display": "minimal-ui",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "Federico's personal website",
+    "background_color": "#000000",
+    "theme_color": "#000000",
+    "description": "Federico's portfolio",
     "orientation": "landscape-primary",
     "prefer_related_applications": false,
     "icons": [

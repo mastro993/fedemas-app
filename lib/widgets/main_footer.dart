@@ -14,7 +14,7 @@ class MainFooter extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            'Built with 💙 Flutter',
+            'Built with 💙 Flutter (Beta)',
             style: TextStyle(
               fontSize: 19,
             ),

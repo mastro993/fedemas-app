@@ -73,14 +73,14 @@ I enjoy solving problems using mobile development as a fundation and experimenti
 class _ProjectsGrid extends StatelessWidget {
   final _projects = [
     Project(
-        title: 'Home2Work',
-        shortDescription: 'Car pooling app',
-        isReleased: true,
-        coverImage: 'assets/images/projects/home2work_cover.jpg',
-        url: Home2WorkProjectScreen.ROUTE,
-        // isExternalUrl: true,
-        // url: 'http://home2work.it',
-        ),
+      title: 'Home2Work',
+      shortDescription: 'Car pooling app',
+      isReleased: true,
+      coverImage: 'assets/images/projects/home2work_cover.webp',
+      url: Home2WorkProjectScreen.ROUTE,
+      // isExternalUrl: true,
+      // url: 'http://home2work.it',
+    ),
     Project(title: 'ND'),
   ];
 
@@ -131,67 +131,73 @@ class _ProjectGridItem extends StatelessWidget {
   _ProjectGridItem(this._project);
   @override
   Widget build(BuildContext context) {
-    return CustomCursor(
-      cursorStyle: CustomCursor.pointer,
-      child: GestureDetector(
-        onTap: () {
-          if (_project.url.isNotEmpty) {
-            if (_project.isExternalUrl) {
-              UrlUtils.openUrl(_project.url);
-            } else {
-              Navigator.of(context).pushNamed(_project.url);
+    if (_project.isReleased) {
+      return CustomCursor(
+        cursorStyle: CustomCursor.pointer,
+        child: GestureDetector(
+          onTap: () {
+            if (_project.url.isNotEmpty) {
+              if (_project.isExternalUrl) {
+                UrlUtils.openUrl(_project.url);
+              } else {
+                Navigator.of(context).pushNamed(_project.url);
+              }
             }
-          }
-        },
-        child: _project.isReleased
-            ? Container(
-                decoration: new BoxDecoration(
-                  image: new DecorationImage(
-                    image: new NetworkImage(_project.coverImage),
-                    fit: BoxFit.cover,
+          },
+          child: Container(
+                  decoration: new BoxDecoration(
+                    borderRadius: BorderRadius.circular(16.0),
+                    image: new DecorationImage(
+                      image: new NetworkImage(_project.coverImage),
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                ),
-              )
-            : Container(
-                decoration: new BoxDecoration(
-                  border: Border.all(
-                    width: 2,
-                    color: const Color(0xFFA8A6A1),
+                ), 
+          // child: Container(
+          //   decoration: new BoxDecoration(
+          //     image: new DecorationImage(
+          //       image: new NetworkImage(_project.coverImage),
+          //       fit: BoxFit.cover,
+          //     ),
+          //   ),
+          //   child: _project.released
+          //       ? Container()
+          //       : ClipRect(
+          //           child: new BackdropFilter(
+          //             filter: new ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+          //             child: new Container(
+          //               decoration: new BoxDecoration(
+          //                   color: Colors.white.withOpacity(0.0)),
+          //               child: Center(
+          //                 child: Text(
+          //                   'Coming Soon',
+          //                   style: TextStyleUtils.of(context).title,
+          //                 ),
+          //               ),
+          //             ),
+          //           ),
+          //         ),
+          // ),
+        ),
+      );
+    } else {
+      return Container(
+                  decoration: new BoxDecoration(
+                    border: Border.all(
+                      width: 2,
+                      color: const Color(0x55A8A6A1),
+                    ),
+                    borderRadius: BorderRadius.circular(16.0)
                   ),
-                ),
-                child: Center(
-                  child: Text(
-                    'Coming Soon',
-                    style: TextStyleUtils.of(context).subTitle,
+                  child: Center(
+                    child: Text(
+                      'Coming Soon',
+                      style: TextStyleUtils.of(context)
+                          .subTitle
+                          .copyWith(color: const Color(0x55A8A6A1)),
+                    ),
                   ),
-                ),
-              ),
-        // child: Container(
-        //   decoration: new BoxDecoration(
-        //     image: new DecorationImage(
-        //       image: new NetworkImage(_project.coverImage),
-        //       fit: BoxFit.cover,
-        //     ),
-        //   ),
-        //   child: _project.released
-        //       ? Container()
-        //       : ClipRect(
-        //           child: new BackdropFilter(
-        //             filter: new ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-        //             child: new Container(
-        //               decoration: new BoxDecoration(
-        //                   color: Colors.white.withOpacity(0.0)),
-        //               child: Center(
-        //                 child: Text(
-        //                   'Coming Soon',
-        //                   style: TextStyleUtils.of(context).title,
-        //                 ),
-        //               ),
-        //             ),
-        //           ),
-        //         ),
-        // ),
-      ),
-    );
+                );
+    }
   }
 }

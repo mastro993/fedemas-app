@@ -69,7 +69,7 @@ class _MainScreenState extends State<MainScreen> {
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          Image.network('/assets/images/bg.png', fit: BoxFit.cover),
+          Image.network('/assets/images/bg.webp', fit: BoxFit.cover),
           CustomScrollView(
             controller: _controller,
             physics: BouncingScrollPhysics(),

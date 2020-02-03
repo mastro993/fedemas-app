@@ -1,6 +1,5 @@
 import 'package:fedemas_app/utils/custom_cursor.dart';
 import 'package:fedemas_app/utils/screen_utils.dart';
-import 'package:fedemas_app/utils/url_utils.dart';
 import 'package:fedemas_app/widgets/navigation_bar_button.dart';
 import 'package:fedemas_app/widgets/navigation_bar_icon_button.dart';
 import 'package:flutter/material.dart';

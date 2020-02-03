@@ -20,7 +20,7 @@ class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
     final expanded = screenWidth >= ScreenUtils.WIDTH_M;
     return SafeArea(
       child: Container(
-        padding: EdgeInsets.all(24),
+        padding: EdgeInsets.symmetric(horizontal: 24.0),
         height: preferredSize.height,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -85,7 +85,7 @@ class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               ),
             if (!expanded)
-            // ! Vertical alignment!
+              // ! Vertical alignment!
               CustomCursor(
                 cursorStyle: CustomCursor.pointer,
                 child: IconButton(

@@ -20,10 +20,6 @@
             {
                 "asset": "fonts/SF-Pro-Display-Bold.otf",
                 "weight": 800
-            },
-            {
-                "asset": "fonts/SF-Pro-Display-Thin.otf",
-                "weight": 200
             }
 
         ]

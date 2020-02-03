@@ -76,7 +76,7 @@ class _ProjectsGrid extends StatelessWidget {
       title: 'Home2Work',
       shortDescription: 'Car pooling app',
       isReleased: true,
-      coverImage: 'assets/images/projects/home2work_cover.webp',
+      coverImage: 'assets/images/h2w_cover.webp',
       url: Home2WorkProjectScreen.ROUTE,
       // isExternalUrl: true,
       // url: 'http://home2work.it',

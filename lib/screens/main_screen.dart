@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:fedemas_app/screens/about_screen.dart';
 import 'package:fedemas_app/screens/projects_screen.dart';
 import 'package:fedemas_app/utils/screen_utils.dart';

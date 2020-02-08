@@ -114,7 +114,7 @@ class _ProjectsGrid extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           itemCount: _projects.length,
           gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            childAspectRatio: 3 / 4,
+            childAspectRatio: 4 / 3,
             maxCrossAxisExtent: gridMaxCrossAxisExtent,
             crossAxisSpacing: 24.0,
             mainAxisSpacing: 24.0,
@@ -128,6 +128,8 @@ class _ProjectsGrid extends StatelessWidget {
 
 class _ProjectGridItem extends StatelessWidget {
   final Project _project;
+
+  final _borderRadius = BorderRadius.circular(8.0);
   _ProjectGridItem(this._project);
   @override
   Widget build(BuildContext context) {
@@ -145,14 +147,14 @@ class _ProjectGridItem extends StatelessWidget {
             }
           },
           child: Container(
-                  decoration: new BoxDecoration(
-                    borderRadius: BorderRadius.circular(16.0),
-                    image: new DecorationImage(
-                      image: new NetworkImage(_project.coverImage),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ), 
+            decoration: new BoxDecoration(
+              borderRadius: _borderRadius,
+              image: new DecorationImage(
+                image: new NetworkImage(_project.coverImage),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
           // child: Container(
           //   decoration: new BoxDecoration(
           //     image: new DecorationImage(
@@ -182,22 +184,21 @@ class _ProjectGridItem extends StatelessWidget {
       );
     } else {
       return Container(
-                  decoration: new BoxDecoration(
-                    border: Border.all(
-                      width: 2,
-                      color: const Color(0x55A8A6A1),
-                    ),
-                    borderRadius: BorderRadius.circular(16.0)
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Coming Soon',
-                      style: TextStyleUtils.of(context)
-                          .subTitle
-                          .copyWith(color: const Color(0x55A8A6A1)),
-                    ),
-                  ),
-                );
+        decoration: new BoxDecoration(
+            border: Border.all(
+              width: 2,
+              color: const Color(0x10A8A6A1),
+            ),
+            borderRadius: _borderRadius),
+        child: Center(
+          child: Text(
+            'Coming Soon',
+            style: TextStyleUtils.of(context)
+                .subTitle
+                .copyWith(color: const Color(0x40A8A6A1)),
+          ),
+        ),
+      );
     }
   }
 }

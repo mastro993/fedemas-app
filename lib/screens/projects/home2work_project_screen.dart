@@ -23,7 +23,7 @@ Home2Work is a platform with the aim of simplyfing car sharing between employees
 Home2Work consists of a native Android app and an Asp.net server.
 
 The app has been developed using Kotlin following the Clean Architecture principles. It utilizes the Activity Recognition API to understand if the user is driving and keep track of the movements, which are stored in a local SQLite database.
-It also includes the ability to interact with other usesr with an instant messagin (IM) system and some social features such as user profiles and feeds.
+It also includes the ability to interact with other usesr with an instant messaging (IM) system and some social features such as user profiles and feeds.
 
 The server is an ASP.NET server used to store the data collected by the app and later compute matches between users. It exposes the resources through a RESTful API.
 

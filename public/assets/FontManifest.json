@@ -1,0 +1,54 @@
+[
+    {
+        "family": "MaterialIcons",
+        "fonts": [
+            {
+                "asset": "fonts/MaterialIcons-Regular.ttf"
+            }
+        ]
+    },
+    {
+        "family": "SF Pro",
+        "fonts": [
+            {
+                "asset": "fonts/SF-Pro-Display-Regular.otf"
+            },
+            {
+                "asset": "fonts/SF-Pro-Display-Black.otf",
+                "weight": 900
+            },
+            {
+                "asset": "fonts/SF-Pro-Display-Bold.otf",
+                "weight": 800
+            }
+
+        ]
+    },
+    {
+        "family": "packages/font_awesome_flutter/FontAwesomeBrands",
+        "fonts": [
+            {
+                "weight": 400,
+                "asset": "packages/font_awesome_flutter/lib/fonts/fa-brands-400.ttf"
+            }
+        ]
+    },
+    {
+        "family": "packages/font_awesome_flutter/FontAwesomeRegular",
+        "fonts": [
+            {
+                "weight": 400,
+                "asset": "packages/font_awesome_flutter/lib/fonts/fa-regular-400.ttf"
+            }
+        ]
+    },
+    {
+        "family": "packages/font_awesome_flutter/FontAwesomeSolid",
+        "fonts": [
+            {
+                "weight": 900,
+                "asset": "packages/font_awesome_flutter/lib/fonts/fa-solid-900.ttf"
+            }
+        ]
+    }
+]

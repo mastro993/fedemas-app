@@ -1,15 +1,14 @@
-import 'dart:ui';
-
-import 'package:fedemas_app/widgets/navigation_bar_button.dart';
-import 'package:fedemas_app/widgets/navigation_bar_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'navigation_bar_button.dart';
+import 'navigation_bar_icon_button.dart';
 
 class MainDrawer extends StatelessWidget {
   final int selectedPage;
   final Function onPageSelect;
 
-  MainDrawer({this.selectedPage, this.onPageSelect});
+  const MainDrawer({this.selectedPage, this.onPageSelect});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,6 @@ class MainDrawer extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
               // Important: Remove any padding from the ListView.
               children: <Widget>[
                 NavigationBarButton(
@@ -53,7 +51,6 @@ class MainDrawer extends StatelessWidget {
             bottom: 48,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 NavigationBarIconButton(
                   iconData: FontAwesomeIcons.linkedinIn,

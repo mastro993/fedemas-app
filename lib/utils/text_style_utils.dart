@@ -1,6 +1,7 @@
-import 'package:fedemas_app/utils/screen_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'screen_utils.dart';
 
 class TextStyleUtils {
   final double _windowHeight;
@@ -40,7 +41,7 @@ class TextStyleUtils {
       fontSize: fontSize,
       height: 1.2,
       fontWeight: FontWeight.bold,
-      color: Color(0xFFA8A6A1),
+      color: const Color(0xFFA8A6A1),
     );
   }
 
@@ -73,7 +74,7 @@ class TextStyleUtils {
     return TextStyle(
       fontSize: fontSize,
       height: 1.8,
-      color: Color(0xFFA8A6A1),
+      color: const Color(0xFFA8A6A1),
     );
   }
 
@@ -89,7 +90,7 @@ class TextStyleUtils {
     return TextStyle(
       fontSize: fontSize,
       height: 1.8,
-      color: Color(0xFFA8A6A1),
+      color: const Color(0xFFA8A6A1),
     );
   }
 
@@ -105,7 +106,7 @@ class TextStyleUtils {
     return TextStyle(
       fontSize: fontSize,
       height: 1.8,
-      color: Color(0xFFA8A6A1),
+      color: const Color(0xFFA8A6A1),
     );
   }
 }

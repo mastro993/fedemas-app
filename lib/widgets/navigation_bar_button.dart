@@ -1,18 +1,19 @@
-import 'package:fedemas_app/utils/custom_cursor.dart';
 import 'package:flutter/material.dart';
 
+import '../utils/custom_cursor.dart';
+
 class NavigationBarButton extends StatelessWidget {
-  final Function onPressed;
+  final Function() onPressed;
   final bool isSelected;
   final String title;
   final double fontSize;
 
-  NavigationBarButton(
-      {@required this.title,
-      @required this.isSelected,
-      @required this.onPressed,
-      this.fontSize = 18,
-      });
+  const NavigationBarButton({
+    @required this.title,
+    @required this.isSelected,
+    @required this.onPressed,
+    this.fontSize = 18,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +21,13 @@ class NavigationBarButton extends StatelessWidget {
       cursorStyle: CustomCursor.pointer,
       child: FlatButton(
         onPressed: onPressed,
+        textColor: isSelected ? Colors.white : Colors.white.withOpacity(0.4),
         child: Text(
-          this.title,
+          title,
           style: TextStyle(
             fontSize: fontSize,
           ),
         ),
-        textColor:
-            this.isSelected ? Colors.white : Colors.white.withOpacity(0.4),
       ),
     );
   }

@@ -1,10 +1,10 @@
-import 'package:fedemas_app/utils/custom_cursor.dart';
-import 'package:fedemas_app/utils/screen_utils.dart';
-import 'package:fedemas_app/utils/url_utils.dart';
-import 'package:fedemas_app/widgets/navigation_bar_button.dart';
-import 'package:fedemas_app/widgets/navigation_bar_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../utils/custom_cursor.dart';
+import '../utils/screen_utils.dart';
+import 'navigation_bar_button.dart';
+import 'navigation_bar_icon_button.dart';
 
 class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -12,7 +12,8 @@ class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
   final int selectedPage;
   final Function onPageSelect;
 
-  NavigationBar({this.onPageSelect, this.selectedPage, this.preferredSize});
+  const NavigationBar(
+      {this.onPageSelect, this.selectedPage, this.preferredSize});
 
   @override
   Widget build(BuildContext context) {
@@ -21,19 +22,14 @@ class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
     final expanded = screenWidth >= ScreenUtils.WIDTH_M;
     return SafeArea(
       child: Container(
-        padding: EdgeInsets.all(24),
+        padding: const EdgeInsets.symmetric(horizontal: 24.0),
         height: preferredSize.height,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             if (expanded)
               Flexible(
-                flex: 1,
-                fit: FlexFit.loose,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     NavigationBarButton(
                       title: 'Projects',
@@ -49,8 +45,6 @@ class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               ),
             Flexible(
-              flex: 1,
-              fit: FlexFit.loose,
               child: Text(
                 'Federico Mastrini',
                 style: TextStyle(
@@ -61,11 +55,9 @@ class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
             ),
             if (expanded)
               Flexible(
-                flex: 1,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
+                  children: const <Widget>[
                     NavigationBarIconButton(
                       iconData: FontAwesomeIcons.linkedinIn,
                       destinationUrl: 'https://www.linkedin.com/in/fedemas/',
@@ -86,11 +78,10 @@ class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               ),
             if (!expanded)
-            // ! Vertical alignment!
+              // ! Vertical alignment!
               CustomCursor(
-                cursorStyle: CustomCursor.pointer,
                 child: IconButton(
-                  icon: Icon(FontAwesomeIcons.bars),
+                  icon: const Icon(FontAwesomeIcons.bars),
                   onPressed: () => Scaffold.of(context).openEndDrawer(),
                   color: Colors.white,
                 ),

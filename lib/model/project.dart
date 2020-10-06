@@ -11,7 +11,7 @@ class Project {
   const Project({
     @required this.title,
     this.shortDescription = '',
-    this.coverImage = 'assets/images/project_placeholder.png',
+    this.coverImage = 'assets/images/project_placeholder.webp',
     this.url = '',
     this.isReleased = false,
     this.isExternalUrl = false

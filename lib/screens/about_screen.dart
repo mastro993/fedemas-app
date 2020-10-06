@@ -1,11 +1,12 @@
 import 'dart:math';
 
-import 'package:fedemas_app/utils/custom_cursor.dart';
-import 'package:fedemas_app/utils/screen_utils.dart';
-import 'package:fedemas_app/utils/text_style_utils.dart';
-import 'package:fedemas_app/utils/url_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../utils/custom_cursor.dart';
+import '../utils/screen_utils.dart';
+import '../utils/text_style_utils.dart';
+import '../utils/url_utils.dart';
 
 class AboutScreen extends StatelessWidget {
   @override
@@ -25,7 +26,7 @@ class AboutScreen extends StatelessWidget {
       alignment: Alignment.center,
       child: Container(
         width: min(textWidth, 1360),
-        padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 48.0),
+        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 48.0),
         //height: _mq.size.height,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,7 +35,7 @@ class AboutScreen extends StatelessWidget {
               'Hey there 👋 nice to meet you!',
               style: TextStyleUtils.of(context).heading,
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             Text(
               '''
 Federico here. I am a Software Developer who’s passionate about mobile app development and UI/UX design.
@@ -49,7 +50,7 @@ If you are interested in knowing more about me and my past experiences you can t
 ''',
               style: TextStyleUtils.of(context).body,
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             DocumentButton(
               title: 'Read CV',
               color: Colors.blue,
@@ -63,18 +64,22 @@ If you are interested in knowing more about me and my past experiences you can t
 }
 
 class DocumentButton extends StatelessWidget {
-  const DocumentButton({this.title, this.color, this.onPressed});
-
-  final Function onPressed;
+  final Function() onPressed;
   final String title;
   final Color color;
+
+  const DocumentButton({
+    this.title,
+    this.color,
+    this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
     return CustomCursor(
       cursorStyle: CustomCursor.pointer,
       child: FlatButton(
-        padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
         color: color,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24.0),
@@ -82,17 +87,16 @@ class DocumentButton extends StatelessWidget {
         onPressed: onPressed,
         child: Row(
           mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(bottom: 4),
-              child: const Icon(
+            const Padding(
+              padding: EdgeInsets.only(bottom: 4),
+              child: Icon(
                 FontAwesomeIcons.file,
                 color: Colors.white,
                 size: 16.0,
               ),
             ),
-            SizedBox(width: 16),
+            const SizedBox(width: 16),
             Text(
               title,
               style: const TextStyle(

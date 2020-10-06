@@ -1,10 +1,9 @@
-import 'dart:math';
-
-import 'package:fedemas_app/utils/screen_utils.dart';
-import 'package:fedemas_app/utils/text_style_utils.dart';
-import 'package:fedemas_app/widgets/main_footer.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../utils/screen_utils.dart';
+import '../utils/text_style_utils.dart';
+import '../widgets/main_footer.dart';
 
 abstract class ProjectDetailsScreen extends StatelessWidget {
   String getTitle();
@@ -40,14 +39,12 @@ abstract class ProjectDetailsScreen extends StatelessWidget {
 
     return Scaffold(
       body: CustomScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         slivers: <Widget>[
           SliverAppBar(
             elevation: 0,
             floating: true,
-            pinned: false,
             backgroundColor: Colors.black,
-            snap: false,
             expandedHeight: navbarHeight,
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
@@ -55,7 +52,7 @@ abstract class ProjectDetailsScreen extends StatelessWidget {
                 height: navbarHeight,
                 child: IconButton(
                   alignment: Alignment.centerLeft,
-                  icon: Icon(FontAwesomeIcons.arrowLeft),
+                  icon: const Icon(FontAwesomeIcons.arrowLeft),
                   onPressed: () => Navigator.of(context).pop(),
                   color: Colors.white,
                 ),
@@ -68,7 +65,7 @@ abstract class ProjectDetailsScreen extends StatelessWidget {
               Column(
                 children: <Widget>[
                   Container(
-                    constraints: new BoxConstraints(
+                    constraints: BoxConstraints(
                       minHeight: headingHeight,
                       maxWidth: bodyWidth,
                     ),
@@ -89,7 +86,7 @@ abstract class ProjectDetailsScreen extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    constraints: new BoxConstraints(
+                    constraints: BoxConstraints(
                       minHeight: bodyHeight,
                       maxWidth: bodyWidth,
                     ),

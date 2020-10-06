@@ -1,12 +1,13 @@
-import 'package:fedemas_app/utils/custom_cursor.dart';
-import 'package:fedemas_app/utils/url_utils.dart';
 import 'package:flutter/material.dart';
+
+import '../utils/custom_cursor.dart';
+import '../utils/url_utils.dart';
 
 class NavigationBarIconButton extends StatelessWidget {
   final IconData iconData;
   final String destinationUrl;
 
-  NavigationBarIconButton({this.iconData, this.destinationUrl});
+  const NavigationBarIconButton({this.iconData, this.destinationUrl});
 
   @override
   Widget build(BuildContext context) {

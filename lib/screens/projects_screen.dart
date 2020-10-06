@@ -1,13 +1,14 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:fedemas_app/model/project.dart';
-import 'package:fedemas_app/screens/projects/home2work_project_screen.dart';
-import 'package:fedemas_app/utils/custom_cursor.dart';
-import 'package:fedemas_app/utils/screen_utils.dart';
-import 'package:fedemas_app/utils/text_style_utils.dart';
-import 'package:fedemas_app/utils/url_utils.dart';
 import 'package:flutter/material.dart';
+
+import '../model/project.dart';
+import '../utils/custom_cursor.dart';
+import '../utils/screen_utils.dart';
+import '../utils/text_style_utils.dart';
+import '../utils/url_utils.dart';
+import 'projects/home2work_project_screen.dart';
 
 class ProjectsScreen extends StatelessWidget {
   @override
@@ -45,7 +46,7 @@ class _ProjectsSummary extends StatelessWidget {
     return Container(
       constraints: BoxConstraints(minHeight: textHeight),
       alignment: Alignment.center,
-      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 48),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),
       child: Container(
         width: min(textWidth, 1360),
         child: Column(
@@ -55,12 +56,12 @@ class _ProjectsSummary extends StatelessWidget {
               'Hey there 👋',
               style: TextStyleUtils.of(context).heading,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
-              '''
-I\'m Federico 🙌.
-I\'m a Software Engineer with a passion in Mobile App Development and UI/UX Design based in La Spezia, Italy.
-I enjoy solving problems using mobile development as a fundation and experimenting with UI/UX, and have lots of fun doing it. If you are interested in my work scroll down to see it! 👇''',
+              """
+I'm Federico 🙌.
+I'm a Software Engineer with a passion in Mobile App Development and UI/UX Design based in La Spezia, Italy.
+I enjoy solving problems using mobile development as a fundation and experimenting with UI/UX, and have lots of fun doing it. If you are interested in my work scroll down to see it! 👇""",
               style: TextStyleUtils.of(context).subTitle,
             ),
           ],
@@ -72,7 +73,7 @@ I enjoy solving problems using mobile development as a fundation and experimenti
 
 class _ProjectsGrid extends StatelessWidget {
   final _projects = [
-    Project(
+    const Project(
       title: 'Home2Work',
       shortDescription: 'Car pooling app',
       isReleased: true,
@@ -81,7 +82,7 @@ class _ProjectsGrid extends StatelessWidget {
       // isExternalUrl: true,
       // url: 'http://home2work.it',
     ),
-    Project(title: 'ND'),
+    const Project(title: 'ND'),
   ];
 
   @override
@@ -102,13 +103,14 @@ class _ProjectsGrid extends StatelessWidget {
       gridWidth = screenWidth;
       gridMaxCrossAxisExtent = gridWidth;
     }
+    const edgeInsets = EdgeInsets.symmetric(vertical: 32.0);
     return Container(
       alignment: Alignment.topCenter,
       color: Colors.black,
-      padding: EdgeInsets.symmetric(vertical: 32.0),
+      padding: edgeInsets,
       child: Container(
         width: gridWidth,
-        padding: EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(24.0),
         child: GridView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
@@ -147,10 +149,10 @@ class _ProjectGridItem extends StatelessWidget {
             }
           },
           child: Container(
-            decoration: new BoxDecoration(
+            decoration: BoxDecoration(
               borderRadius: _borderRadius,
-              image: new DecorationImage(
-                image: new NetworkImage(_project.coverImage),
+              image: DecorationImage(
+                image: NetworkImage(_project.coverImage),
                 fit: BoxFit.cover,
               ),
             ),
@@ -184,7 +186,7 @@ class _ProjectGridItem extends StatelessWidget {
       );
     } else {
       return Container(
-        decoration: new BoxDecoration(
+        decoration: BoxDecoration(
             border: Border.all(
               width: 2,
               color: const Color(0x10A8A6A1),

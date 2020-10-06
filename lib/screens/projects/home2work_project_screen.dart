@@ -16,9 +16,9 @@ class Home2WorkProjectScreen extends ProjectDetailsScreen {
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        _TheProblemSection(),
-        _TheSolutionSection(),
-        _KeyFeaturesSection(),
+        // _TheProblemSection(),
+        // _TheSolutionSection(),
+        // _KeyFeaturesSection(),
         _ExternalResources()
       ],
     ));

@@ -1,10 +1,11 @@
-import 'package:fedemas_app/screens/about_screen.dart';
-import 'package:fedemas_app/screens/projects_screen.dart';
-import 'package:fedemas_app/utils/screen_utils.dart';
-import 'package:fedemas_app/widgets/main_drawer.dart';
-import 'package:fedemas_app/widgets/main_footer.dart';
-import 'package:fedemas_app/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
+
+import '../utils/screen_utils.dart';
+import '../widgets/main_drawer.dart';
+import '../widgets/main_footer.dart';
+import '../widgets/navigation_bar.dart';
+import 'about_screen.dart';
+import 'projects_screen.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -35,8 +36,8 @@ class _MainScreenState extends State<MainScreen> {
   double _navbarHeight = 0.0;
   bool _scrolledToTop = true;
 
-  _scrollListener() {
-    bool scrolledToTop = _controller.offset <= (_navbarHeight / 2);
+  void _scrollListener() {
+    final bool scrolledToTop = _controller.offset <= (_navbarHeight / 2);
     if (scrolledToTop != _scrolledToTop) {
       setState(() {
         _scrolledToTop = scrolledToTop;
@@ -70,7 +71,7 @@ class _MainScreenState extends State<MainScreen> {
           Image.network('/assets/images/bg.webp', fit: BoxFit.cover),
           CustomScrollView(
             controller: _controller,
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             slivers: <Widget>[
               SliverAppBar(
                 elevation: 0,
@@ -80,7 +81,6 @@ class _MainScreenState extends State<MainScreen> {
                 actions: <Widget>[Container()],
                 backgroundColor: Colors.transparent,
                 floating: true,
-                pinned: false,
                 snap: true,
                 expandedHeight: _navbarHeight,
                 flexibleSpace: FlexibleSpaceBar(
@@ -88,7 +88,7 @@ class _MainScreenState extends State<MainScreen> {
                     children: <Widget>[
                       AnimatedOpacity(
                           opacity: _scrolledToTop ? 0.0 : 1.0,
-                          duration: Duration(milliseconds: 250),
+                          duration: const Duration(milliseconds: 250),
                           child: Container(
                             color: Colors.black,
                           )),
@@ -106,13 +106,15 @@ class _MainScreenState extends State<MainScreen> {
                   Column(
                     children: <Widget>[
                       ConstrainedBox(
-                        constraints: new BoxConstraints(
-                          minHeight:
-                              mq.size.height - _navbarHeight - MainFooter.SIZE - 80,
+                        constraints: BoxConstraints(
+                          minHeight: mq.size.height -
+                              _navbarHeight -
+                              MainFooter.SIZE -
+                              80,
                         ),
                         child: _getCurrentPage(),
                       ),
-                      SizedBox(height: 72),
+                      const SizedBox(height: 72),
                       MainFooter(),
                     ],
                   ),

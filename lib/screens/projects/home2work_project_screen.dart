@@ -26,7 +26,6 @@ class Home2WorkProjectScreen extends ProjectDetailsScreen {
 }
 
 class _KeyFeaturesSection extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -39,7 +38,6 @@ class _KeyFeaturesSection extends StatelessWidget {
 }
 
 class _TheSolutionSection extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -52,7 +50,6 @@ class _TheSolutionSection extends StatelessWidget {
 }
 
 class _TheProblemSection extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -65,7 +62,6 @@ class _TheProblemSection extends StatelessWidget {
 }
 
 class _ExternalResources extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Row(

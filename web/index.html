@@ -15,6 +15,33 @@
   <link rel="manifest" href="/manifest.json">
 </head>
 <body id="app-container">
+    
+  <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase-analytics.js"></script>
+
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyA_K4N2IJpA3suXtUQYVSlyqaZVDED1OD8",
+      authDomain: "fedemas-f9d6e.firebaseapp.com",
+      databaseURL: "https://fedemas-f9d6e.firebaseio.com",
+      projectId: "fedemas-f9d6e",
+      storageBucket: "fedemas-f9d6e.appspot.com",
+      messagingSenderId: "382276699111",
+      appId: "1:382276699111:web:f891de93c96a6e9d4df342",
+      measurementId: "G-YY3PP4D9P7"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    firebase.analytics.isSupported().then((isSupported) => {
+      if (isSupported) {
+        analytics = firebase.analytics();
+        console.log('analytics');
+      }
+    });
+  </script>
+  
   <script src="main.dart.js?version=1" type="application/javascript"></script>
+
 </body>
 </html>

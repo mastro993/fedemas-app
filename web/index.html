@@ -32,7 +32,13 @@
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
+
+    firebase.analytics.isSupported().then((isSupported) => {
+      if (isSupported) {
+        analytics = firebase.analytics();
+        console.log('analytics');
+      }
+    });
   </script>
   
   <script src="main.dart.js?version=1" type="application/javascript"></script>

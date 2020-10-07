@@ -12,6 +12,10 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
+  static FirebaseAnalytics analytics = FirebaseAnalytics();
+  static FirebaseAnalyticsObserver observer =
+      FirebaseAnalyticsObserver(analytics: analytics);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,9 +31,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MainScreen(),
-      navigatorObservers: [
-        FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
-      ],
+      navigatorObservers: <NavigatorObserver>[observer],
       routes: {
         Home2WorkProjectScreen.ROUTE: (ctx) => Home2WorkProjectScreen(),
       },

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../utils/screen_utils.dart';
@@ -6,14 +8,21 @@ import '../widgets/main_footer.dart';
 import '../widgets/navigation_bar.dart';
 import 'about_screen.dart';
 import 'projects_screen.dart';
+import 'package:flutter/animation.dart';
 
 class MainScreen extends StatefulWidget {
   @override
   _MainScreenState createState() => _MainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _MainScreenState extends State<MainScreen>
+    with SingleTickerProviderStateMixin {
   int _pageIndex = 0;
+  ScrollController _scrollController;
+  double _navbarHeight = 0.0;
+  bool _scrolledToTop = true;
+  Animation<double> _animation;
+  AnimationController _animationController;
 
   void _onPageSelect(int newIndex) {
     setState(() {
@@ -32,12 +41,8 @@ class _MainScreenState extends State<MainScreen> {
     }
   }
 
-  ScrollController _controller;
-  double _navbarHeight = 0.0;
-  bool _scrolledToTop = true;
-
   void _scrollListener() {
-    final bool scrolledToTop = _controller.offset <= (_navbarHeight / 2);
+    final bool scrolledToTop = _scrollController.offset <= (_navbarHeight / 2);
     if (scrolledToTop != _scrolledToTop) {
       setState(() {
         _scrolledToTop = scrolledToTop;
@@ -47,9 +52,26 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void initState() {
-    _controller = ScrollController();
-    _controller.addListener(_scrollListener);
     super.initState();
+    _scrollController = ScrollController();
+    _scrollController.addListener(_scrollListener);
+
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1000),
+    );
+
+    _animation = Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+      curve: Curves.easeIn,
+      parent: _animationController,
+    ));
+
+    Timer(
+      const Duration(),
+      () {
+        _animationController.forward();
+      },
+    );
   }
 
   @override
@@ -64,70 +86,81 @@ class _MainScreenState extends State<MainScreen> {
       _navbarHeight = 72.0;
     }
 
-    return Scaffold(
-      body: Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          Image.network('/assets/images/bg.webp', fit: BoxFit.cover),
-          CustomScrollView(
-            controller: _controller,
-            physics: const BouncingScrollPhysics(),
-            slivers: <Widget>[
-              SliverAppBar(
-                elevation: 0,
-                // Empty leading removes the "back arrow" button when endDrawer is opened
-                leading: Container(),
-                // Empty actions list removes the default "burger button" to open the endDrawer
-                actions: <Widget>[Container()],
-                backgroundColor: Colors.transparent,
-                floating: true,
-                snap: true,
-                expandedHeight: _navbarHeight,
-                flexibleSpace: FlexibleSpaceBar(
-                  background: Stack(
-                    children: <Widget>[
-                      AnimatedOpacity(
+    return FadeTransition(
+      opacity: _animation,
+      child: Scaffold(
+        body: Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            Image.network('/assets/images/bg.webp', fit: BoxFit.cover),
+            CustomScrollView(
+              controller: _scrollController,
+              physics: const BouncingScrollPhysics(),
+              slivers: <Widget>[
+                SliverAppBar(
+                  elevation: 0,
+                  // Empty leading removes the "back arrow" button when endDrawer is opened
+                  leading: Container(),
+                  // Empty actions list removes the default "burger button" to open the endDrawer
+                  actions: <Widget>[Container()],
+                  backgroundColor: Colors.transparent,
+                  floating: true,
+                  snap: true,
+                  expandedHeight: _navbarHeight,
+                  flexibleSpace: FlexibleSpaceBar(
+                    background: Stack(
+                      children: <Widget>[
+                        AnimatedOpacity(
                           opacity: _scrolledToTop ? 0.0 : 1.0,
                           duration: const Duration(milliseconds: 250),
                           child: Container(
                             color: Colors.black,
-                          )),
-                      NavigationBar(
-                        onPageSelect: _onPageSelect,
-                        selectedPage: _pageIndex,
-                        preferredSize: Size.fromHeight(_navbarHeight),
-                      )
-                    ],
+                          ),
+                        ),
+                        NavigationBar(
+                          onPageSelect: _onPageSelect,
+                          selectedPage: _pageIndex,
+                          preferredSize: Size.fromHeight(_navbarHeight),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              SliverList(
-                delegate: SliverChildListDelegate([
-                  Column(
-                    children: <Widget>[
-                      ConstrainedBox(
-                        constraints: BoxConstraints(
-                          minHeight: mq.size.height -
-                              _navbarHeight -
-                              MainFooter.SIZE -
-                              80,
+                SliverList(
+                  delegate: SliverChildListDelegate([
+                    Column(
+                      children: <Widget>[
+                        ConstrainedBox(
+                          constraints: BoxConstraints(
+                            minHeight: mq.size.height -
+                                _navbarHeight -
+                                MainFooter.SIZE -
+                                80,
+                          ),
+                          child: _getCurrentPage(),
                         ),
-                        child: _getCurrentPage(),
-                      ),
-                      const SizedBox(height: 72),
-                      MainFooter(),
-                    ],
-                  ),
-                ]),
-              )
-            ],
-          ),
-        ],
-      ),
-      endDrawer: MainDrawer(
-        selectedPage: _pageIndex,
-        onPageSelect: _onPageSelect,
+                        const SizedBox(height: 72),
+                        MainFooter(),
+                      ],
+                    ),
+                  ]),
+                )
+              ],
+            ),
+          ],
+        ),
+        endDrawer: MainDrawer(
+          selectedPage: _pageIndex,
+          onPageSelect: _onPageSelect,
+        ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    _animationController.dispose();
+    super.dispose();
   }
 }

@@ -26,6 +26,5 @@ class MyApp extends StatelessWidget {
         Home2WorkProjectScreen.ROUTE: (ctx) => Home2WorkProjectScreen(),
       },
     );
-    ;
   }
 }

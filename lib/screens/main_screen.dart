@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/screen_utils.dart';
@@ -23,6 +24,7 @@ class _MainScreenState extends State<MainScreen>
   bool _scrolledToTop = true;
   Animation<double> _animation;
   AnimationController _animationController;
+  StreamController<double> _streamController;
 
   void _onPageSelect(int newIndex) {
     setState(() {
@@ -53,6 +55,9 @@ class _MainScreenState extends State<MainScreen>
   @override
   void initState() {
     super.initState();
+
+    _streamController = StreamController<double>();
+
     _scrollController = ScrollController();
     _scrollController.addListener(_scrollListener);
 
@@ -72,6 +77,14 @@ class _MainScreenState extends State<MainScreen>
         _animationController.forward();
       },
     );
+
+    throttle(_streamController.stream).listen((offset) {
+      _scrollController.animateTo(
+        offset,
+        duration: const Duration(milliseconds: 200),
+        curve: Curves.ease,
+      );
+    });
   }
 
   @override
@@ -93,59 +106,62 @@ class _MainScreenState extends State<MainScreen>
           fit: StackFit.expand,
           children: <Widget>[
             Image.network('/assets/images/bg.webp', fit: BoxFit.cover),
-            CustomScrollView(
-              controller: _scrollController,
-              physics: const BouncingScrollPhysics(),
-              slivers: <Widget>[
-                SliverAppBar(
-                  elevation: 0,
-                  // Empty leading removes the "back arrow" button when endDrawer is opened
-                  leading: Container(),
-                  // Empty actions list removes the default "burger button" to open the endDrawer
-                  actions: <Widget>[Container()],
-                  backgroundColor: Colors.transparent,
-                  floating: true,
-                  snap: true,
-                  expandedHeight: _navbarHeight,
-                  flexibleSpace: FlexibleSpaceBar(
-                    background: Stack(
-                      children: <Widget>[
-                        AnimatedOpacity(
-                          opacity: _scrolledToTop ? 0.0 : 1.0,
-                          duration: const Duration(milliseconds: 250),
-                          child: Container(
-                            color: Colors.black,
+            Listener(
+              onPointerSignal: _handlePointerSignal,
+              child: CustomScrollView(
+                controller: _scrollController,
+                physics: const BouncingScrollPhysics(),
+                slivers: <Widget>[
+                  SliverAppBar(
+                    elevation: 0,
+                    // Empty leading removes the "back arrow" button when endDrawer is opened
+                    leading: Container(),
+                    // Empty actions list removes the default "burger button" to open the endDrawer
+                    actions: <Widget>[Container()],
+                    backgroundColor: Colors.transparent,
+                    floating: true,
+                    snap: true,
+                    expandedHeight: _navbarHeight,
+                    flexibleSpace: FlexibleSpaceBar(
+                      background: Stack(
+                        children: <Widget>[
+                          AnimatedOpacity(
+                            opacity: _scrolledToTop ? 0.0 : 1.0,
+                            duration: const Duration(milliseconds: 250),
+                            child: Container(
+                              color: Colors.black,
+                            ),
                           ),
-                        ),
-                        NavigationBar(
-                          onPageSelect: _onPageSelect,
-                          selectedPage: _pageIndex,
-                          preferredSize: Size.fromHeight(_navbarHeight),
-                        )
-                      ],
+                          NavigationBar(
+                            onPageSelect: _onPageSelect,
+                            selectedPage: _pageIndex,
+                            preferredSize: Size.fromHeight(_navbarHeight),
+                          )
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                SliverList(
-                  delegate: SliverChildListDelegate([
-                    Column(
-                      children: <Widget>[
-                        ConstrainedBox(
-                          constraints: BoxConstraints(
-                            minHeight: mq.size.height -
-                                _navbarHeight -
-                                MainFooter.SIZE -
-                                80,
+                  SliverList(
+                    delegate: SliverChildListDelegate([
+                      Column(
+                        children: <Widget>[
+                          ConstrainedBox(
+                            constraints: BoxConstraints(
+                              minHeight: mq.size.height -
+                                  _navbarHeight -
+                                  MainFooter.SIZE -
+                                  80,
+                            ),
+                            child: _getCurrentPage(),
                           ),
-                          child: _getCurrentPage(),
-                        ),
-                        const SizedBox(height: 72),
-                        MainFooter(),
-                      ],
-                    ),
-                  ]),
-                )
-              ],
+                          const SizedBox(height: 72),
+                          MainFooter(),
+                        ],
+                      ),
+                    ]),
+                  )
+                ],
+              ),
             ),
           ],
         ),
@@ -155,6 +171,25 @@ class _MainScreenState extends State<MainScreen>
         ),
       ),
     );
+  }
+
+  Stream<double> throttle(Stream<double> src) async* {
+    double offset = _scrollController.offset;
+    DateTime dt = DateTime.now();
+    await for (final delta in src) {
+      if (DateTime.now().difference(dt) > const Duration(milliseconds: 200)) {
+        offset = _scrollController.position.pixels;
+      }
+      dt = DateTime.now();
+      offset += delta;
+      yield offset;
+    }
+  }
+
+  void _handlePointerSignal(PointerSignalEvent e) {
+    if (e is PointerScrollEvent && e.scrollDelta.dy != 0) {
+      _streamController.add(e.scrollDelta.dy);
+    }
   }
 
   @override

@@ -1,4 +1,5 @@
 import 'package:fedemas_app/core/utils/screen_utils.dart';
+import 'package:fedemas_app/core/utils/text_style_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -46,10 +47,9 @@ class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
             Flexible(
               child: Text(
                 'Federico Mastrini',
-                style: TextStyle(
-                  fontSize: expanded ? 32 : 21,
-                  fontWeight: FontWeight.w800,
-                ),
+                style: TextStyleUtils.of(context)
+                    .heading
+                    .copyWith(fontSize: expanded ? 32 : 21),
               ),
             ),
             if (expanded)

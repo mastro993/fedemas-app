@@ -10,7 +10,7 @@ class FedemasApp extends StatelessWidget {
       theme: ThemeData(
         buttonColor: const Color.fromRGBO(54, 124, 255, 1.0),
         accentColor: const Color.fromRGBO(54, 124, 255, 1.0),
-        canvasColor: Colors.black, //const Color(0xFF1D2025),
+        canvasColor: Colors.black,
         textTheme: Theme.of(context).textTheme.apply(
             bodyColor: const Color(0xFFE4E7EB),
             displayColor: const Color(0xFFE4E7EB),

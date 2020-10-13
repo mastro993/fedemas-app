@@ -1,10 +1,13 @@
+import 'dart:js' as js;
 import 'dart:math';
 
-import 'package:fedemas_app/core/utils/screen_utils.dart';
-import 'package:fedemas_app/core/utils/text_style_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../../core/utils/screen_utils.dart';
+import '../../core/utils/text_style_utils.dart';
+import '../widgets/custom_flat_button_widgets.dart';
 
 class AboutScreen extends StatelessWidget {
   @override
@@ -49,60 +52,11 @@ If you are interested in knowing more about me and my past experiences you can t
               style: TextStyleUtils.of(context).body,
             ),
             const SizedBox(height: 24),
-            DocumentButton(
+            CustomFlatButton(
               title: 'Read CV',
-              color: Colors.blue,
-              onPressed: () {
-                // UrlUtils.openUrl('/assets/docs/cv.pdf')
-              },
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class DocumentButton extends StatelessWidget {
-  final Function() onPressed;
-  final String title;
-  final Color color;
-
-  const DocumentButton({
-    this.title,
-    this.color,
-    this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: FlatButton(
-        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
-        color: color,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24.0),
-        ),
-        onPressed: onPressed,
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            const Padding(
-              padding: EdgeInsets.only(bottom: 4),
-              child: Icon(
-                FontAwesomeIcons.file,
-                color: Colors.white,
-                size: 16.0,
-              ),
-            ),
-            const SizedBox(width: 16),
-            Text(
-              title,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-              ),
+              iconData: FontAwesomeIcons.briefcase,
+              onPressed: () =>
+                  js.context.callMethod('open', ['/assets/docs/cv.pdf']),
             ),
           ],
         ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../utils/custom_cursor.dart';
-import '../utils/url_utils.dart';
+import 'package:flutter/rendering.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NavigationBarIconButton extends StatelessWidget {
   final IconData iconData;
@@ -11,12 +10,18 @@ class NavigationBarIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomCursor(
-      cursorStyle: CustomCursor.pointer,
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
       child: IconButton(
         icon: Icon(iconData),
         color: Colors.white,
-        onPressed: () => UrlUtils.openUrl(destinationUrl),
+        onPressed: () async {
+          if (await canLaunch(destinationUrl)) {
+            await launch(destinationUrl);
+          } else {
+            throw 'Could not launch $destinationUrl';
+          }
+        },
       ),
     );
   }

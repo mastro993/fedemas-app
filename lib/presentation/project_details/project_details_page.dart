@@ -1,13 +1,20 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:fedemas_app/core/utils/screen_utils.dart';
+import 'package:fedemas_app/core/utils/text_style_utils.dart';
+import 'package:fedemas_app/presentation/widgets/main_footer.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../utils/screen_utils.dart';
-import '../utils/text_style_utils.dart';
-import '../widgets/main_footer.dart';
+abstract class ProjectDetailsPage extends StatelessWidget {
+  final String title;
+  final String subtitle;
 
-abstract class ProjectDetailsScreen extends StatelessWidget {
-  String getTitle();
-  String getSubtitle() => '';
+  const ProjectDetailsPage({
+    Key key,
+    this.title,
+    this.subtitle,
+  }) : super(key: key);
+
   Widget getBody(BuildContext context);
 
   @override
@@ -35,7 +42,7 @@ abstract class ProjectDetailsScreen extends StatelessWidget {
 
     final headingHeight = screenHeight * 0.2;
     final bodyHeight =
-        mq.size.height - navbarHeight - headingHeight - MainFooter.SIZE;
+        mq.size.height - navbarHeight - headingHeight - MainFooter.size;
 
     return Scaffold(
       body: CustomScrollView(
@@ -53,7 +60,7 @@ abstract class ProjectDetailsScreen extends StatelessWidget {
                 child: IconButton(
                   alignment: Alignment.centerLeft,
                   icon: const Icon(FontAwesomeIcons.arrowLeft),
-                  onPressed: () => Navigator.of(context).pop(),
+                  onPressed: () => ExtendedNavigator.of(context).pop(),
                   color: Colors.white,
                 ),
               ),
@@ -75,11 +82,11 @@ abstract class ProjectDetailsScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          getTitle(),
+                          title,
                           style: TextStyleUtils.of(context).heading,
                         ),
                         Text(
-                          getSubtitle(),
+                          subtitle,
                           style: TextStyleUtils.of(context).subHeading,
                         ),
                       ],

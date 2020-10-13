@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-
-import '../utils/custom_cursor.dart';
-import '../utils/url_utils.dart';
+import 'package:flutter/rendering.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MainFooter extends StatelessWidget {
-  static const double SIZE = 192.0;
+  static const double size = 192.0;
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: const BoxConstraints.expand(height: MainFooter.SIZE),
+      constraints: const BoxConstraints.expand(height: MainFooter.size),
       // height: MainFooter.SIZE,
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -20,11 +19,18 @@ class MainFooter extends StatelessWidget {
               fontSize: 19,
             ),
           ),
-          CustomCursor(
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
             child: FlatButton(
               textColor: Colors.white.withOpacity(0.5),
-              onPressed: () =>
-                  UrlUtils.openUrl('https://github.com/mastro993/fedemas-app'),
+              onPressed: () async {
+                const url = 'https://github.com/mastro993/fedemas-app';
+                if (await canLaunch(url)) {
+                  await launch(url);
+                } else {
+                  throw 'Could not launch $url';
+                }
+              },
               child: const Text(
                 'Check out the code on GitHub',
                 style: TextStyle(

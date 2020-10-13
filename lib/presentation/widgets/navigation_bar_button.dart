@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../utils/custom_cursor.dart';
+import 'package:flutter/rendering.dart';
 
 class NavigationBarButton extends StatelessWidget {
   final Function() onPressed;
@@ -17,8 +16,8 @@ class NavigationBarButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomCursor(
-      cursorStyle: CustomCursor.pointer,
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
       child: FlatButton(
         onPressed: onPressed,
         textColor: isSelected ? Colors.white : Colors.white.withOpacity(0.4),

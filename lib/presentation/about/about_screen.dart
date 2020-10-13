@@ -1,12 +1,10 @@
 import 'dart:math';
 
+import 'package:fedemas_app/core/utils/screen_utils.dart';
+import 'package:fedemas_app/core/utils/text_style_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import '../utils/custom_cursor.dart';
-import '../utils/screen_utils.dart';
-import '../utils/text_style_utils.dart';
-import '../utils/url_utils.dart';
 
 class AboutScreen extends StatelessWidget {
   @override
@@ -54,7 +52,9 @@ If you are interested in knowing more about me and my past experiences you can t
             DocumentButton(
               title: 'Read CV',
               color: Colors.blue,
-              onPressed: () => UrlUtils.openUrl('/assets/docs/cv.pdf'),
+              onPressed: () {
+                // UrlUtils.openUrl('/assets/docs/cv.pdf')
+              },
             ),
           ],
         ),
@@ -76,8 +76,8 @@ class DocumentButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomCursor(
-      cursorStyle: CustomCursor.pointer,
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
       child: FlatButton(
         padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
         color: color,

@@ -1,16 +1,18 @@
-import 'package:fedemas_app/screens/project_details_screen.dart';
-import 'package:fedemas_app/utils/custom_cursor.dart';
-import 'package:fedemas_app/utils/text_style_utils.dart';
-import 'package:fedemas_app/utils/url_utils.dart';
+import 'package:fedemas_app/core/utils/text_style_utils.dart';
+import 'package:fedemas_app/presentation/project_details/project_details_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class Home2WorkProjectScreen extends ProjectDetailsScreen {
-  static const String ROUTE = "/project/home2work/";
+class ProjectDetailsHome2WorkPage extends ProjectDetailsPage {
+  const ProjectDetailsHome2WorkPage()
+      : super(
+          title: 'Home2Work',
+          subtitle: 'A gamification powered app for car pooling',
+        );
 
-  String getTitle() => 'Home2Work';
-  String getSubtitle() => 'A gamification powered app for car pooling';
-
+  @override
   Widget getBody(BuildContext context) {
     return Container(
         child: Column(
@@ -66,15 +68,22 @@ class _ExternalResources extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        CustomCursor(
-          cursorStyle: CustomCursor.pointer,
+        MouseRegion(
+          cursor: SystemMouseCursors.click,
           child: FlatButton(
             padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
             color: Colors.green,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(24.0),
             ),
-            onPressed: () => UrlUtils.openUrl('http://home2work.it'),
+            onPressed: () async {
+              const url = 'http://home2work.it';
+              if (await canLaunch(url)) {
+                await launch(url);
+              } else {
+                throw 'Could not launch $url';
+              }
+            },
             child: Row(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -102,15 +111,22 @@ class _ExternalResources extends StatelessWidget {
         SizedBox(
           width: 16.0,
         ),
-        CustomCursor(
-          cursorStyle: CustomCursor.pointer,
+        MouseRegion(
+          cursor: SystemMouseCursors.click,
           child: FlatButton(
             padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
             color: Colors.blue,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(24.0),
             ),
-            onPressed: () => UrlUtils.openUrl('/assets/docs/thesis.pdf'),
+            onPressed: () async {
+              const url = '/assets/docs/thesis.pdf';
+              if (await canLaunch(url)) {
+                await launch(url);
+              } else {
+                throw 'Could not launch $url';
+              }
+            },
             child: Row(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,

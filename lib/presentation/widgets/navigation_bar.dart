@@ -1,8 +1,7 @@
+import 'package:fedemas_app/core/utils/screen_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import '../utils/custom_cursor.dart';
-import '../utils/screen_utils.dart';
 import 'navigation_bar_button.dart';
 import 'navigation_bar_icon_button.dart';
 
@@ -79,7 +78,8 @@ class NavigationBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             if (!expanded)
               // ! Vertical alignment!
-              CustomCursor(
+              MouseRegion(
+                cursor: SystemMouseCursors.click,
                 child: IconButton(
                   icon: const Icon(FontAwesomeIcons.bars),
                   onPressed: () => Scaffold.of(context).openEndDrawer(),

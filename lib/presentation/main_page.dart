@@ -1,22 +1,22 @@
 import 'dart:async';
 
+import 'package:fedemas_app/core/utils/screen_utils.dart';
+import 'package:fedemas_app/presentation/widgets/main_drawer.dart';
+import 'package:fedemas_app/presentation/widgets/main_footer.dart';
+import 'package:fedemas_app/presentation/widgets/navigation_bar.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import '../utils/screen_utils.dart';
-import '../widgets/main_drawer.dart';
-import '../widgets/main_footer.dart';
-import '../widgets/navigation_bar.dart';
-import 'about_screen.dart';
-import 'projects_screen.dart';
+import 'about/about_screen.dart';
+import 'projects/projects_screen.dart';
 import 'package:flutter/animation.dart';
 
-class MainScreen extends StatefulWidget {
+class MainPage extends StatefulWidget {
   @override
   _MainScreenState createState() => _MainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen>
+class _MainScreenState extends State<MainPage>
     with SingleTickerProviderStateMixin {
   int _pageIndex = 0;
   ScrollController _scrollController;
@@ -63,7 +63,7 @@ class _MainScreenState extends State<MainScreen>
 
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 250),
     );
 
     _animation = Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
@@ -149,7 +149,7 @@ class _MainScreenState extends State<MainScreen>
                             constraints: BoxConstraints(
                               minHeight: mq.size.height -
                                   _navbarHeight -
-                                  MainFooter.SIZE -
+                                  MainFooter.size -
                                   80,
                             ),
                             child: _getCurrentPage(),
